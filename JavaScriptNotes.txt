@@ -1,0 +1,695 @@
+Declearing variables
+    "var" decleares a variable globally
+    "let" decleares a variable without having problems related with var
+    "const" mostly we use const (95%).Value is not changeable
+
+Printing variables
+    "alert();"
+    "document.write();"
+    "console.log();"  mostly we use console.log().
+
+
+Conditions testing
+    if, else if, else:
+        "if(Conditions){
+            code to execute if this condition is true;
+        }"
+        
+        "else if(Conditions){
+            code to execute if this condition is true;
+        }"
+        "else{
+            code to execute if this condition is false;
+        }"
+    
+    Conditionals/ Ternary operator:
+        "(Condition ? true : false);"    
+    
+    Switch statement:
+        "switch( var/const/let ){
+            case condition:
+                code to execute if this case is true;
+                break;
+            case condition:
+                code to execute if this case is true;
+                break;
+            default:
+                code to execute if all cases are false;
+        }"
+
+
+
+Template Literals:
+    const firstName = "Aimal";
+    const lastName = "Khan";
+
+    console.log(`Hello ${firstName} ${lastName}`); //" ` " This is backtick.
+    // Hello Aimal Khan
+        is equvalent to -> console.log("Hello " + firstName + " " + lastName);
+
+
+
+Loops / Iterations:
+    we should use "let" to decleares a variable for incrementation/decrementation.
+    for:
+        "for(initialization; condition; increment/decrement){
+            code to execute;
+        }"
+    
+    while:
+        "while(condition){
+            code to execute;
+        }"
+
+    do while:
+        "do{
+            code to execute;
+        }while(condition);"
+
+
+Objects:
+    Objects are actually a variable that holds different types of data at a time.
+    Objects are used to store data in a structured way.
+    Objects can be nested inside other objects.
+    Mostly data from server is in the form of array of objects.
+    "let/const/var" can be used to decleare an object.
+    
+    "const objectName = {
+        key: value,
+        key: value,
+        key: value,
+        key: {          // Object inside an object. Nested object.
+            key: value,
+            key: value,
+            key: value,
+        },
+    };"
+
+
+
+
+Data Serialization: 
+    JSON is a JavaScript Object Notation.
+        Parsing
+            "let jsonData = JSON.parse(jsonString);"
+            To convert a json string to an object.
+        Stringifying
+            "let jsonString = JSON.stringify(objectName);"
+            To convert an object to a json string.
+    
+    XML is a Extensible Markup Language.
+        It was iindustry standard for storing and exchanging data.
+        It is not so common now (2022).
+    
+    CSV is a Comma Separated Values.
+        CSV is deliminated text file.
+        Is common in data scraping, data mining, and data science.
+        It is excelent for non-complex data.
+        MySQL and MongoDB can be popullated using CSV.
+    YAML is a Yet Another Markup Language.
+
+
+
+Array Methods:
+    "push()"
+        "arrayName.push(value);"
+
+    "pop()"
+        "arrayName.pop();"
+
+    "map()"
+        It is used to find and change the values of an array.
+
+    "filter()"
+        It is used to find the values of an array.
+
+    "reduce()"
+        It is used to reduce the array to a single value.
+            eg. finding the sum of all the values in an array.
+        It has two arguments:
+            "reduce(function(accumulator, currentValue){
+                return accumulator + currentValue;
+            }, initialValue);"
+                "accumulator" is the value of the previous iteration.
+                "currentValue" is the value of the current iteration.
+                "initialValue" is the value of the first iteration.
+                "return" is the value of the final iteration.
+    "sort()"
+        It is immutable (unable to change) function.
+        It is used to sort the values of an array.
+        It has two argument:
+            "sort(function(a, b){
+                return a - b;
+            });"
+                "a" is the value of the first iteration.
+                "b" is the value of the second iteration.
+                "return" is the value of the final iteration.
+                    if a - b : returns assending order.
+                    if b - a : returns descending order.
+
+    "forEach()"
+        It is used to iterate over the values of an array.
+        It is used to traverse the array.
+            Traverse mean access for the purpose of printing, changing, or deleting the values of an array.
+        It has one argument:
+            "forEach(function(currentValue, index, array){
+                code to execute;
+            })"
+                "currentValue" is the value of the current iteration.
+                "index" is the index of the current iteration.
+                "array" is the array.
+                "return" is the value of the final iteration.
+    
+    "indexOf()"
+        "arrayName.indexOf(value);"
+        It is used to find the index of a value in an array.
+        If the value is not found, it returns -1.
+        It has one argument
+
+    "concat()"
+        "arrayName.concat(arrayName);"
+        It is used to concatenate two arrays.
+        It has one argument.
+
+    "fill()"
+        "arrayName.fill(value, startIndex, endIndex);"
+        It is used to fill the values of an array.
+        It has three arguments:
+            value: the value to fill the array with.
+            startIndex: the index to start filling the array.
+            endIndex: the index to end filling the array.
+
+    "some()"
+        "arrayName.some(function(currentValue, index, array){
+            return true;
+        })"
+        It is used to check if any of the values of an array is true.
+        It has three argument:
+            "currentValue" is the value of the current iteration.
+            "index" is the index of the current iteration.
+            "array" is the array.
+            "return" is the value of the final iteration. Mostly boolean.
+                if true: it returns true.
+                if false: it returns false.
+
+    "every()"
+        "arrayName.every(function(currentValue, index, array){
+            return true;
+        })"
+        It is used to check if all the values of an array is true.
+        It has three argument:
+            "currentValue" is the value of the current iteration.
+            "index" is the index of the current iteration.
+            "array" is the array.
+            "return" is the value of the final iteration. Mostly boolean.
+                if true: it returns true.
+                if false: it returns false.
+    
+
+
+Destructuring:
+    Array Destructuring:
+        "let [firstName, lastName] = ['Aimal', 'Khan'];"
+            "firstName" is the first value of the array.
+            "lastName" is the second value of the array.
+            We can change the name of the variables.
+
+    Object Destructuring:
+        "let {firstName, lastName} = objectName;"
+            "firstName" is the first value of the object.
+            "lastName" is the second value of the object.
+            We cannot change the key of the object.
+
+
+
+String Methods:
+    "concat()"
+        "string1Name.concat(string2Name);"
+            It is used to concatenate two strings.
+                We can also concatenate strings as:
+                    "string1Name + string2Name;"
+                    `${string1Name} ${string2Name}`;
+
+    "indexOf()"
+        "stringName.indexOf(value);"
+            It is used to find the index of a value in a string.
+            If the value is not found, it returns -1.
+
+    "replace()"
+        "stringName.replace(searchValue, replaceValue);"
+            It is used to replace a value in a string.
+            It is immutable (unable to change) function.
+            We can pass both strings as well as regular expression as searchValue.
+            It has two arguments:
+                "searchValue" is the value to search for.
+                "replaceValue" is the value to replace the search value with.
+
+    "slice()"
+        "stringName.slice(startIndex, endIndex);"
+            It is used to extract from one place to another in a string.
+            it has two arguments:
+                "startIndex" is the index to start extracting.
+                "endIndex" is the index to end extracting.
+
+    "split()"
+        "stringName.split(separator);"
+            It is used to split a string into an array.
+            In php it is called "explode".
+            It has one argument:
+                "separator" is the value to split the string with. Also known as the delimiter.
+                such as in csv it is Comma.
+                "return" is the array.
+    
+    "trim()"
+        "stringName.trim();"
+            It is used to remove the whitespace from the beginning and end of a string.
+            It has no argument.
+            If we want to remove the whitespace from the left, use the following:
+                "stringName.trimLeft();"
+            If we want to remove the whitespace from the right, use the following:
+                "stringName.trimRight();"
+
+
+Number Methods:
+    "typeof()"
+        "typeof(value);"
+            It is used to find the type of a value.
+
+    "toString()"
+        "numberName.toString();"
+            It is used to convert a number to a string.
+
+    "toFixed()"
+        "numberName.toFixed(decimalPlaces);"
+            It is used to round a number to a certain number of decimal places.
+
+    "toPresision()"
+        "numberName.toPrecision(precision);"
+            It is used to round a number to a certain number of decimal places.
+
+    "ceil()"
+        "numberName.ceil();"
+            It is used to round a number to the nearest integer.
+
+    "floor()"
+        "numberName.floor();"
+            It is used to round a number to the nearest integer.
+
+    "round()"
+        "numberName.round();"
+            It is used to round a number to the nearest integer.
+    
+    "random()"
+        "Math.random();"
+            It is used to generate a random number between 0 and 1.
+        To generate a random number between  a range, use the following:
+            "Math.random() * (max - min) + min;"
+    "min()"
+        "Math.min(a, b, c, d, e);"
+            It is used to find the minimum value of a set of numbers.
+    
+    "max()"
+        "Math.max(a, b, c, d, e);"
+            It is used to find the maximum value of a set of numbers.
+
+    "pow()" 
+        "Math.pow(base, exponent);"
+            It is used to find the power of a number.
+            It has two arguments:
+                "base" is the base number.
+                "exponent" is the exponent.
+
+    "sqrt()"
+        "Math.sqrt(value);"
+            It is used to find the square root of a number.
+
+
+
+
+Date Functions:
+    "getMilliseconds()"
+        "dateName.getMilliseconds();"
+            It is used to get the milliseconds of a date from 1st january 1970.
+    "getSeconds()"
+        "dateName.getSeconds();"
+            It is used to get the seconds of a date.
+    "getMinutes()"
+    "getHours()"
+    "getDate()"
+    "getMonth()"
+    "getFullYear()"
+        "dateName.getFullYear();"
+            It is used to get the year of a date.
+    "getDay()"
+    "getTime()"
+    "getTimezoneOffset()"
+        "dateName.getTimezoneOffset();"
+            It is used to get the timezone offset of a date.
+    "getUTCDate()"
+        "dateName.getUTCDate();"
+            It is used to get the date of a date.
+    "getUTCMonth()"
+    "getUTCFullYear()"
+    "getUTCDay()"
+    "getUTCHours()"
+    "getUTCMinutes()"
+    "getUTCSeconds()"
+    "getUTCMilliseconds()"
+    "getYear()"
+    "getUTCYear()"
+
+    
+
+
+Regular Expressions:
+    When we talk about regular expressions, it means we are searching , verifying or modifying patterns.
+    Regular expression are universal, they can be used in any language
+    visit: https://regexr.com/
+    It syntax is:
+        "function-name(/pattern(group)/flags)"
+            "function-name" is the name of the function.
+            "pattern" is the pattern to search for.
+                Basics:
+                    "/ /" is used to search for a pattern.
+                    "()" is used to group the pattern.
+                    "/" match the preceding character exactly.
+                    "\" is used to escape the special characters.
+                    "|" is used for logical OR.
+
+                Character classes:
+                    "\d" is used to find a digit.
+                    "\w" is used to find a word.
+                    "\s" is used to find a space.
+                    "\b" is used to find a word boundary.
+                    "\D" is used to find a non-digit.
+                    "\t" is used to find a tab.
+                    "\n" is used to find a new line.
+                
+                Brackets:
+                    "[xyz]" match any xyz
+                    "[J-Z]" match capital from capital J to capital Z
+                    "[^xyz]" match any character except xyz.
+                    "[a-zA-Z]" match any character from a to z or A to Z.
+                    "[a-z&&[^0-9]]" match any character from a to z except 0 to 9.
+                
+                Quantifiers:
+                    "bob|alice" match bob or alice
+                    "z?" match zero or one preceding character.
+                    "z*" match zero or more preceding character.
+                    "z+" match one or more preceding character.
+                    "z{n}" match exactly n preceding character.
+                    "z{n,}" match n or more preceding character.
+                    "z{n,m}" match n to m preceding character.
+
+                Anchors:
+                    "^" match the beginning of the string.
+                    "$" match the end of the string.
+                    "\b" match the word boundary.
+                    "\B" match the non-word boundary.
+
+            "group" is the group in pattern to search for.
+            "flags / modifiers" is the flags to use.
+                there are maximum of 32 flags.
+                "g" : global search.
+                "i" : case insensitive.
+                "m" : multiline.
+                "s" : dot matches newline.
+                "u" : unicode.
+                "y" : sticky.
+                "x" : free-spacing and line-breaking.
+                "A" : ASCII.
+                "D" : debug.
+                "S" : simple.
+                "U" : unicode-property.
+
+
+
+Rest and Spread Operators:
+    "rest"
+        "function(...args)"
+            "..." is used to spread the arguments.
+            "args" is the array of arguments.
+
+    "spread"
+        "function(array)"
+            "..." is used to spread the array.
+            "array" is the array of arguments.
+
+    It has four uses:
+        array concatenation
+        object concatenation
+        using during the call of function
+        using in the arguments of function.
+
+
+Sets:
+    The set is a collection of unique values.
+    It is represented by curly braces.
+    IT is iterable.
+    It has no order.
+    syntax:
+        "var setName = new set({value1, value2, value3, ..., valueN});"
+            "setName" is the name of the set.
+            "value1, value2, value3, ..., valueN" is the values in the set.
+
+
+Event Handeling:
+    "addEventListener()"
+        "element.addEventListener(eventName, functionName);"
+            "element" is the element to add the event to.
+            "eventName" is the name of the event.
+            "functionName" is the function to execute when the event occurs.
+    "onclick"
+    "onmouseenter"
+    "onmouseleave"
+    "onmouseover" 
+    "onkeypress"
+    "onkeydown"
+    "onkeyup"
+    "onfocus"           
+
+
+DOM:
+    Document Object Model
+    It is the structure of the web page.
+    It is represented by the "document" variable.
+    It is used to access the elements of the web page.
+    
+    DOM Selectors:
+        These are used to select elements of the web page.
+        They are represented by the "querySelector()" function.
+        It has one argument:
+            "selector" is the selector to use.
+
+        some of selector are:
+            "id"
+                Access by: document.getElementById("id");
+                also like this: document.querySelector("#id");
+            
+            "class"
+                Access by: document.getElementsByClassName("class");
+                also like this: document.querySelector(".class");
+
+            "tag"
+                Access by: document.getElementsByTagName("tag");
+                also like this: document.querySelector("tag");
+                it will return an array of elements.
+
+            "name"
+                Access by: document.getElementsByName("name");
+                also like this: document.querySelector("[name]");
+
+            "attribute"
+                Access by: document.getElementsByAttribute("attribute");
+                also like this: document.querySelector("[attribute]");
+
+    JS DOM HTML:
+        "innerHTML"
+            Used to get or set the HTML content of an element.
+            "selector.innerHTML"
+                "selector" is the selector to get the HTML content from.
+            
+        "innerText"
+            Used to get or set the text content of an element.
+            "selector.innerText"
+                "selector" is the selector to get the text content from.
+
+        "attribute"
+            Used to get or set the value of an attribute.
+            "selector.attribute"
+                "selector" is the selector to get the value from.
+
+        "style"
+            Used to get or set the style of an element.
+            "selector.style.property = "value" ;"
+                "selector" is the selector to get the style from.
+                "property" is the name of the property.
+                    We should use camel case instead of using hyphen.
+                        eg: "fontSize" instead of "font-size".
+                            "backgroundColor" instead of "background-color". etc
+                "value" is the value of the property.
+
+        "forms"
+            Used to get or set the forms of an element.
+            "document.forms["formname/id/etc"]["username/password/etc"].value"
+
+        "elements"
+            "creatElement()"
+                Used to create an element.
+                "document.createElement(tagName)"
+                    "tagName" is the name of the tag.
+                To give id we write:
+                    "document.createElement(tagName).id = "id";
+                To give value we can write:
+                    "document.createElement(tagName).innerHTML = "value";
+
+            "appendChild()"
+                Used to add an element to the end of the parent element.
+                "parent.appendChild(child)"
+                    "parent" is the parent element (eg. document.body).
+                    "child" is the child element.
+
+            "insertBefore()"
+                Used to add an element to the parent element before the reference element.
+                "parent.insertBefore(newElement, referenceElement)"
+                    "parent" is the parent element (eg. document.body).
+                    "newElement" is the new element to add.
+                    "referenceElement" is the element to add the new element before.
+
+            "setAttribute()"
+                Used to set the value of an attribute.
+                "element.setAttribute(attribute, value)"
+                    "element" is the element to set the attribute on.
+                    "attribute" is the name of the attribute.
+                    "value" is the value of the attribute.
+
+            "removeAttribute()"
+                Used to remove an attribute.
+                "element.removeAttribute(attribute)"
+                    "element" is the element to remove the attribute from.
+                    "attribute" is the name of the attribute.
+
+
+
+Asyncronous JS:
+    The advantage of asynchronous programming is that the code is not executed in the same order as it is written.
+    ""setTimeout()"  // same as "delay() in c++"
+        Used to set a timer.
+        "setTimeout(callBackFunction, time)"
+            "callBackFunction" is the function to execute.
+                When we pass a function as an argument, it is called a callback function.
+            "time" is the time in milliseconds.
+        But JavaScript will not wait for the timer to finish.It will execute the
+        functions comming after that as soon as possible. It is the only behaviour of the javascript.
+        javascript is not a multi threaded language. It is single threaded. Its behaviour by default is asynchronous.
+        It means that the code will not wait for the timer to finish.
+
+        Call Back Hell:
+            When we have a lot of functions to execute, we can use call back hell.
+            It is a chain of functions.
+            its like this:
+                "const one = () =>{
+                    setTimeout ( (callback) => {
+                        console.log("one");
+                        callback();
+                    }, timeInMilliseconds);
+                }
+                 const two = (callback) => {
+                    setTimeout (()=>{
+                        console.log("two");
+                        callback();
+                    }, timeInMilliseconds);
+                }
+                 const three = (callback) => {
+                    setTimeout (()=>{
+                        console.log("three");
+                        callback();
+                    }, timeInMilliseconds);
+                }
+                one(()=>{
+                        two(()=>{
+                                three(()=>{
+                                        //do something
+                                    }
+                                )
+                            }
+                        )
+                    }
+                );"
+                instead of this:
+                    one ();
+                    two ();
+                    three ();
+        
+      
+        Promises:
+            A promise is new feature of ES6, a class that represents the result of an asynchronous
+            operation.
+            It is used to handle the asynchronous behaviour of the code.
+            we can use library named 
+            syntax is:
+                "new Promise((resolve, reject) => {
+                    //code
+                })"
+                It has two arguments:
+                    "resolve" is the function to execute if the operation is successful.
+                    "reject" is the function to execute if the operation fails.
+            
+            The above example is written as:
+                "
+                //How To Write:
+                    const func1 = () => {
+                        return new promise((resolve, reject)=>{
+                            setTimeout(() => {
+                                //code;
+                                resolve();
+                            }, timeInMilliseconds) 
+                        })
+                    }
+                    const func2 = () => {
+                        return new promise((resolve, reject)=>{
+                            setTimeout(() => {
+                                //code;
+                                resolve();
+                            }, timeInMilliseconds);
+                        })
+                    }
+                    const func3 = () => {
+                        return new promise ((resolve, reject) => {
+                            setTimeout(() => {
+                                //code;
+                                resolve();
+                            }, timeInMilliseconds)
+                        })
+                    }
+                //How To Call:
+                    func1().then() => {
+                        func2().then()=>{
+                            func3().then()=>{
+                                //do something;
+                            }
+                        }
+                    }
+                "
+
+        Asynic Await:
+            It is just a method for calling promises.
+            syntax is:
+                "async function(){
+                    await func1();
+                    await func2();
+                    await funcN();
+                }"
+                
+            In above example write promises as it is, but instead of calling them like the above callback
+            hell or the small promises hell; we can use async await.
+            "
+            //How To call The Above Example:
+                async function funcName(){
+                    await func1();
+                    await func2();
+                    await func3();
+                }
+
+                funcName();
+            "
