@@ -693,3 +693,222 @@ Asyncronous JS:
 
                 funcName();
             "
+
+
+AJAX:
+    Asynchronous JavaScript and XML
+    AJAX is a technique for performing asynchronous requests.
+    It is not a new technique, made in 1999.
+    With ajax we can only refresh a portion of page.
+    Server:
+        server is a computer that provide data to other computer.
+        
+    Database:
+        //visit: jasonplaceholder
+    Sanity test:
+        To check if the code is working or not.
+        sane mean "Lewanay"
+        
+    readyState:
+        Four steps :
+            1. The request is created.
+            2. The request is sent.
+            3. The server receives the request.
+            4. The data is sent by the server.and received by the browser.
+    status:
+
+    Methods of retriving data:
+        GET:
+            Used to get data.
+            syntax is:
+                "const xhr = new XMLHttpRequest();
+                xhr.open("GET", "url", true);
+                xhr.send();
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status == 200){
+                            //do something
+                        }
+                    }
+                }"
+        POST:
+            Used to send data.
+            syntax is:
+                "const xhr = new XMLHttpRequest();
+                xhr.open("POST", "url", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("name=value&name=value");
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status == 200){
+                            //do something
+                        }
+                    }
+                }"
+        PUT:
+            Used to update data.
+            syntax is:
+                "const xhr = new XMLHttpRequest();
+                xhr.open("PUT", "url", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("name=value&name=value");
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status == 200){
+                            //do something
+                        }
+                    }
+                }"
+        PATCH:
+            Used to update data.
+            syntax is:
+                "const xhr = new XMLHttpRequest();
+                xhr.open("PATCH", "url", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("name=value&name=value");
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status == 200){
+                            //do something
+                        }
+                    }
+                }"
+        DELETE:
+            Used to delete data.
+            syntax is:
+                "const xhr = new XMLHttpRequest();
+                xhr.open("DELETE", "url", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.send("name=value&name=value");
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState == 4){
+                        if(xhr.status == 200){
+                            //do something
+                        }
+                    }
+                }"
+
+        Syntax of ajax is:
+            "const xhr = new XMLHttpRequest();
+            xhr.open("method", "url", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("name=value&name=value");
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        //do something
+                    }
+                }
+            }"
+
+        Syntax of fetch by using then is:
+            "fetch("url", {
+                method: "method",
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                //do something
+            })"
+
+        Syntax of fetch by using async await is:
+            "async function func(){
+                const response = await fetch("url", {
+                    method: "method",
+                    headers: {
+                        "Content-type": "application/x-www-form-urlencoded"
+                    }
+                });
+                const data = await response.json();
+                //do something
+            }"    
+    API:
+        API stand for Application Programming Interface.
+        it is a set of functions that can be used to access data.
+
+    AXIO:
+        AXIO is a library that can be used to access data.
+        AXIO stand for Asynchronous XMLHttpRequest.
+
+
+
+classes:
+    It is a way to create a new type of data.
+    syntax is:
+        "class ClassName{
+            //code
+        }"
+    class is a keyword that is used to create a new type of data.
+
+    constructor:
+        It is a function that is used to initialize the data.
+        syntax is:
+            "constructor(param1, param2){
+                this.param1 = param1;
+                this.param2 = param2;
+            }"
+    
+    destructor:
+        It is a function that is used to destroy the data.
+        syntax is:
+            "destructor(){
+                delete this.param1;
+                delete this.param2;
+            }"
+            
+        static:
+            It is a keyword that is used to create a static function.
+            static function can be called without creating an object.
+            syntax is:
+                "static functionName(){
+                    //code
+                }"
+
+        Guard Clause:
+            It is a function that is used to check the data.
+            It is used to check if the data is valid or not.
+            syntax is:
+                "if(param1){
+                    //code
+                }else{
+                    //code
+                }"
+
+    getter:
+        It is a function that is used to get the data.
+        syntax is:
+            "get functionName(){
+                return this.param1;
+            }"
+
+    setter:
+        It is a function that is used to set the data.
+        syntax is:
+            "set functionName(param1){
+                this.param1 = param1;
+            }"
+
+    inheritance:
+        It is a way to create a new type of data.
+        syntax is:
+            "class ClassName extends ClassName{
+                //code
+            }"
+
+        overriding:
+            It is a way to create a new type of data/function and remove
+            the existing function/data.
+            syntax is:
+                "functionName(){
+                    //New code
+                }"
+            
+        super:
+            It is a keyword that is used to call the parent function.
+            The difference between "super" and "this" is that "super" is used to call the parent function 
+            while "this" reffer to the current function.
+            It is only correct up to the first level of inheritance.
+            syntax is:
+                "super.functionName();"
