@@ -1,0 +1,346 @@
+What is Node JavaScript?
+    NodeJS is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+    Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
+    Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world. 
+    Node.Js is a software, that is always running on the server.
+    We can only use node.js on that server which has already installed nodeJs.
+    
+    To run javascript we have two ways
+        1. Browser:
+            Browser have already installed V8 engine
+        2. Device:
+            For devices we need nodeJs to run javascript
+            nodeJs is a javascript engine. NodeJs is a command line tool, is a server
+            and is a client.
+
+    Through NodeJs we can do:
+        Formatting another file
+        Giving response to front end just like php.
+        NodeJs is a server side javascript engine.
+
+Package:
+    It is a collection of modules / libraries. These are already written codes and we can use them. These are already available
+    on server in nodejs.org. We can install them using npm/yarn.  
+
+    NPM:
+        Node Package Manager is a package manager for the Node.js platform.
+        YARN is also a package manager for the Node.js platform. Node is installed by default while installing YARN is to be done manually.
+        npm.org is the official repository for the Node.js package manager npm.
+        We have to install both npm and Node.
+
+        Through NPM we can do:
+            1. Install a package
+                We shouldn't install a package globally.
+            2. Dependencies of a package
+                Dependencies are of two types:
+                    1. Dev Dependencies:
+                        These are the dependencies that are only used for development.
+                        These are not installed by default.
+                        for example:
+                            codeline, nodemon, serve, liveserver, scss, cyprus, 
+                    2. Production Dependencies:
+                        These are the dependencies that are installed by default.
+                        These are installed when you run npm install.
+
+    Terminal (bash):
+        To make a project in node first we should write in that folder
+            "npm init"
+        Then a file will be created in that folder
+            "package.json"
+        This file will contain all the information about the project.
+        We can edit this file to add dependencies and other information.
+        We can also edit this file to add scripts.
+        This is called recepie file of the project.
+        In scripts we can add commands to run.
+        We can also add scripts to run in the package.json file.
+            ex; ""scripts": {
+                    "start": "node index.js",
+                    "dev": "nodemon index.js"
+                }
+                now to run it we can run "npm start" or "npm dev""
+        
+        Then we should write in that folder
+            "npm install //packageName "
+            if we write "--save-dev" or simply "-D" then it will install the dev dependencies.
+            if we write "--save" then it will install the production dependencies.
+            if we write "-g" then it will install globally.
+
+        Then we should write in that folder
+            "npm start"
+        Then we can run the project.
+        We can run the project by typing in the terminal:
+            "node index.js"
+
+        if unfortunately we have deleted npm_module folder then we can reinstall these packages by typing in the terminal:
+            "npm install"
+
+
+Common libraries/modules/packages:-
+    In ES5 we imported the module and used it as:
+        const uuid = require('uuid');
+    In ES6 we imported the module and used it as:
+        import uuid from 'uuid';
+    Node by default uses ES
+    We can use babel to convert ES6 to ES5.
+
+    Some core modules:-
+        Core libraries donot need installation.
+        While The other need to be installed.
+        File Server:
+            "const fs = require('fs');"
+            
+            To read a file we use: 
+                    "fs.readFile('fileName', 'utf8', (err, data) => {
+                        if (err) throw err;
+                        console.log(data);
+                    })"
+                We can also write as:
+                    "fs.readFileSync('fileName', 'utf8')"
+
+            To write a file we use:
+                    "fs.writeFile('fileName', 'data', (err) => {
+                        if (err) throw err;
+                        console.log('The file has been saved!');
+                    })"
+                We can only write strings in a file.
+                To write an object in a file we must first stringify the object.
+                Then to read it from file we must first parse the object.
+
+            To rename a file we use:
+                "fs.rename('test.txt', 'test2.txt', function (err) {
+                    if (err) throw err;
+                    console.log('Renamed!');
+                })"
+
+            To delete a file
+                "fs.unlink('test2.txt', function (err) {
+                    if (err) throw err;
+                    console.log('Deleted!');
+                })"
+
+            To create a directory
+                "fs.mkdir('test', function (err) {
+                    if (err) throw err;
+                    console.log('Folder created!');
+                })"
+
+            To delete a directory
+                "fs.rmdir('test', function (err) {
+                    if (err) throw err;
+                    console.log('Folder deleted!');
+                })"
+
+            To read a directory
+                "fs.readdir('test', function (err, files) {
+                    if (err) throw err;
+                    console.log(files);
+                })"
+
+            To check if a file exists
+                "fs.exists('test.txt', function (exists) {
+                    console.log(exists);
+                })"
+
+            To check if a directory exists
+                "fs.exists('test', function (exists) {
+                    console.log(exists);
+                })"
+
+        Operating System:
+            "const os = require('os');"
+                To get the operating system name we use:
+                    "os.platform()"
+                To get the operating system release we use:
+                    "os.release()"
+                To get the operating system type we use:
+                    "os.type()"
+                To get the operating system cpu architecture we use:
+                    "os.arch()"
+                To get the operating system empty memory we use:
+                    "os.freemem()"
+                To get the operating system total memory we use:
+                    "os.totalmem()"
+                To get the operating system uptime we use:
+                    "os.uptime()"
+                To get the operating system hostname we use:
+                    "os.hostname()"
+                To get the operating system username we use:
+                    "os.userInfo().username"
+                To get the operating system homedirectory we use:
+                    "os.homedir()"
+                To get the operating system temporary directory we use:
+                    "os.tmpdir()"
+                To get the operating system endianness we use:
+                    "os.endianness()"
+                To get the operating system eol we use:
+                    "os.EOL"
+                To get the operating system cpus we use:
+                    "os.cpus()"
+                To get the operating system network interfaces we use:
+                    "os.networkInterfaces()"
+                To get the operating system loadavg we use:
+                    "os.loadavg()"
+                
+        Path Module:
+            "const path = require('path');"
+                To get the absolute path of the file we use:
+                    "path.resolve(__filename)"
+                To get the absolute path of the directory we use:
+                    "path.resolve(__dirname)"
+                To join two paths we use:
+                    "path.join(__dirname, 'test.txt')"
+                To normalize a path we use:
+                    "path.normalize(__dirname + '/test.txt')"
+                To get file name of a path we use:
+                    "path.basename(__filename)"
+                To get directory name of a path we use:
+                    "path.dirname(__filename)"
+                To get extension of a path we use:
+                    "path.extname(__filename)"
+
+        URL Module:
+            "const url = require('url');"
+            
+            To check the url if it is valid we use:
+                "url.parse(address/url, true);"
+            To view it host name we use:
+                "url.parse(address/url, true).hostname;"
+            To call its path we use:
+                "url.parse(address/url, true).path;"
+            To call its query we use:
+                "url.parse(address/url, true).query;"
+            To call its hash we use:
+                "url.parse(address/url, true).hash;"
+            To call its port we use:
+                "url.parse(address/url, true).port;"
+            To call its protocol we use:
+                "url.parse(address/url, true).protocol;"
+            To call its search we use:
+                "url.parse(address/url, true).search;"
+            To call its slashes we use:
+                "url.parse(address/url, true).slashes;"
+            To call its auth we use:
+                "url.parse(address/url, true).auth;"
+            To create a url we use:
+                "url.format(urlObject);"
+            To create a url from a path we use:
+                "url.resolve(from, to);"
+            To create a url from a path and a query we use:
+                "url.resolve(from, to, query);"
+        
+        We also have a http module which is used to make http requests.
+            "const http = require('http');"
+                To make a http request we use:
+                    "http.get(url, (res) => {
+                        console.log(res);
+                    })"
+                To make a http request with a callback we use:
+                    "http.get(url, (res) => {
+                        res.on('data', (chunk) => {
+                            console.log(chunk);
+                        })"
+                But we will use express instead of http, which is easy to use.
+
+
+    Important libraries/modules/packages for everyone:-
+        Helper:
+            - UUID
+            - Nodemon / Pm2 / Forever
+            - chalk
+            - JSHint
+            - Joi/Hapi
+            - mongoose
+            - Lodash
+            - FakerJS
+            - validator
+            - MomentJS (depricated)
+            - Axios
+            - eslint
+            - prettier
+            - Dotenv
+            - Keycode
+        Validation:
+            - Joi
+            - Hapi
+            -validator
+        Code linting:
+            - JSHint
+            - ESLint
+            - prettier
+    
+    Important libraries/modules/packages for Frontend:-
+        - React <-- Will be disussed in this course.
+        - Vue
+        - Angular
+        - MeteorJS
+        - EmberJS
+        - PolymerJS
+
+    Important libraries/modules/packages for Backend:-
+        -Express
+        - GET, POST, PUT/PATCH, DELETE
+        - Body Parser
+        - Cors
+        - Multer
+        - Pug
+        - EJS
+
+    PHP packages:-
+        - PHP
+        - Composer
+        - Laravel
+        - CodeIgniter
+        - CakePHP
+        - Sympony
+        - Yii
+        - Zend
+        
+    Python packages:-
+        - Django
+        - Flask
+
+    Java packages:-
+        - Springboot
+        - Struts2
+        - Hibernate
+
+    C# packages:-
+        - ASP .NET
+        - ASP .NET MVC
+        - ASP .NET Web API
+
+    Ruby packages:-
+        - Ruby on Rails
+        - Sinatra
+        - Rack 
+        - Rails
+        - Rails API
+
+    Database
+        - Mongoose
+        - MySQL
+        - Socket.io (chat apps, may not be discussed)
+        - GraphQL (alternate to express based RESTful APIs)
+
+    Testing
+        - Jest
+        - Cypress
+        - NightwatchJS
+        - Mocha
+        - Chai
+        - Puppeteer
+        - TestCafe
+
+    Scrapping
+        - Cheerio
+        - Puppeteer
+
+    Some Other:
+        - jsonwebtoken
+        - bcrypt
+        - Nodemailer
+        - NestJS
+        - Webpack
+        - Babel
+        - even more...
+            https://kinsta.com/blog/javascript-libraries/
