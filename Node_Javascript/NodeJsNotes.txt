@@ -344,3 +344,12 @@ Common libraries/modules/packages:-
         - Babel
         - even more...
             https://kinsta.com/blog/javascript-libraries/
+
+//mosh tutorials:
+    
+        Express:
+            Express is a web application framework for Node.js.
+            It is designed to be minimal and flexible.
+            It is based on the concept of middleware.
+            It is a minimal and flexible web application framework for Node.js.
+

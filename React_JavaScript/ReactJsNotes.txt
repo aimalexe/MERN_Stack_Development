@@ -1,0 +1,40 @@
+React JS:
+    React is a Frontend framework that is used to build user interfaces.
+    It is used to build single page applications.
+    It is used to build reusable components.
+    It is used to build fast and scalable web applications.
+    It is used to build mobile applications.
+    It is used to build desktop applications.
+    It is used to build VR applications.
+    It is used to build AR applications.
+    It is used to build server-side applications.
+    It is used to build native applications.
+    It is used to build hybrid applications.
+    It is used to build progressive web applications.
+    It is used to build static websites.
+    It is used to build dynamic websites.
+
+
+    DOM:
+        There are two types of DOM:
+            1. Real Document Object Model:
+                The DOM that is created by the browser is called the real DOM.
+            2. Virtual Document Object Module:
+                The DOM that is created by React is called the virtual DOM.
+                The virtual DOM is faster than the real DOM.
+                The virtual DOM is easier to work with than the real DOM.
+
+    Rendering:
+        The process of converting the virtual DOM into the real DOM is called rendering.
+        There are two types of rendering:
+        1. Server side rendering:
+            The process of converting the virtual DOM into the real DOM on the server is called server side rendering.
+        2. Client side rendering:
+            The process of converting the virtual DOM into the real DOM on the client is called client side rendering.
+
+    JSX:
+        It is a syntax extension to JavaScript.
+        It is used to write HTML in React.
+        
+
+        
