@@ -84,7 +84,7 @@ Common libraries/modules/packages:-
     We can use babel to convert ES6 to ES5.
 
     Some core modules:-
-        Core libraries donot need installation.
+        Core libraries don't need installation.
         While The other need to be installed.
         File Server:
             "const fs = require('fs');"

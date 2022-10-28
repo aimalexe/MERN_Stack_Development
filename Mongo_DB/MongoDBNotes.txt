@@ -1,0 +1,647 @@
+MongoDB:
+    MongoDB is a NoSQL database. It is a document-based database. It is a non-relational database.
+    It is a cross-platform database. It is a free and open-source, schema-less, document-oriented, distributed, JSON-like,
+    hierarchical database. It is a database that stores data in the form of collections, databases, clusters,
+    nodes, shards and replicas.
+    - Mongo atlas:
+        Mongo atlas is a cloud database service. It is a fully managed database as a service.
+    - MongoDB Compass:
+        MongoDB Compass is a GUI for MongoDB. It is a cross-platform database.
+    - MongoDB shell:
+        MongoDB shell is a command line interface for MongoDB.
+    - Mongoose:
+        Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It manages relationships between
+        data, provides schema validation, and is used to translate between objects in code and the representation
+        of those objects in MongoDB.
+        Its Syntax is:
+            "npm i mongoose"
+        Then in the file where we want to use mongoose we write the following code:
+            " const mongoose = require('mongoose');
+            mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.wtymn9i.mongodb.net/?retryWrites=true&w=majority`) //You can also use mongo atlas url here.
+                .then(() => console.log('Connected to MongoDB...'))
+                .catch(err => console.error('Could not connect to MongoDB...', err)); "
+        - connect() method is used to connect to the database. It takes two arguments which are the url(connection string) of the
+        database and the callback function which executes when the connection is successful. We should connect to database before
+        any route is executed. We can connect to database in the index.js file.
+
+    - MVC: 
+        M stands for Model.
+            It is the part of the application that is responsible for managing the data of the application.
+            It is the part of the application that is responsible for interacting with the database.
+            It is the part of the application that is responsible for performing the business logic of the application, 
+            validation of the data,  authentication of the user, authorization of the user, encryption of the data, decryption 
+            of the data, hashing of the data, unhashing of the data, sanitization of the data., desanitization of the data,
+            compression of the data, decompression of the data.
+        V stands for View.
+            It is the part of the application that is responsible for displaying the data to the user in the form of HTML or Json.
+        C stands for Controller.
+            It is the part of the application that is responsible for handling the requests, responses, routes and logic of the
+            application.
+        It is a software design pattern that separates the application into three main logical components: the model, the view, and the controller.
+        
+    Schema:
+        It is a blueprint of the data that we want to store in the database.
+        It is a description of the data that we want to store in the database.
+            We can use only this schema types:
+            - String
+                String has bellow sub-properties:
+                    - enum: It is used to specify the values that the string can take.
+                    - lowercase: It is used to convert the string to lowercase.
+                    - uppercase: It is used to convert the string to uppercase.
+                    - trim: It is used to remove the white spaces from the beginning and the end of the string.
+                    - minlength: It is used to specify the minimum length of the string.
+                    - maxlength: It is used to specify the maximum length of the string.
+                    - match: It is used to specify the regular expression that the string should match.
+                    - required: It is used to specify that the string is required.
+            - Number (integers and floats)
+                Number has bellow sub-properties:
+                    - min: It is used to specify the minimum value of the number.
+                    - max: It is used to specify the maximum value of the number.
+                    - required: It is used to specify that the number is required.
+                    - get: It is used to specify a function that is executed when the number is retrieved from the database.
+                        eg. " get: v => Math.round(v) "
+                    - set: It is used to specify a function that is executed when the number is set to the database.
+                        eg. " set: v => Math.round(v) "
+            - Date (default: Date.now())
+                Date has bellow sub-properties:
+                    - min: It is used to specify the minimum value of the date.
+                    - max: It is used to specify the maximum value of the date.
+                    - required: It is used to specify that the date is required.
+            - Buffer (for storing binary data)
+            - Boolean
+            - Mixed (for storing mixed data types)
+            - ObjectId (for storing references to other documents)
+            - Array (for storing arrays of data)
+    Model:
+        It is a class with which we construct documents, collections. 
+    We should make a folder named "models" and write the following code in a file named of a model.
+        " const mongoose = require('mongoose');
+
+        const userSchema = new mongoose.Schema({
+            name: {
+                type: String,
+                required: true,
+                min: 3,
+                max: 50
+            },
+            email: {
+                type: String,
+                required: true,
+                min: 5,
+                max: 255,
+                unique: true
+            },
+            password: {
+                type: String,
+                required: true,
+                min: 5,
+                max: 24
+            },
+            isAdmin: Boolean,
+            date: {
+                type: Date,
+                default: Date.now()
+            }
+        });
+        module.exports = mongoose.model('User', userSchema); "
+        
+        Quering documents:
+            Quering documents is the process of retrieving documents from the database. We can use the following methods
+            to query documents:
+                - find()
+                    Used to retrieve all the documents from the database. We can use the following methods to filter the
+                    documents:
+                        find({ name: 'John' }) //Retrieves all the documents that have the name property equal to 'John'.
+                - findOne()
+                    Used to retrieve one document from the database. We can use the following methods to filter the
+                    documents:
+                        findOne({ name: 'John' }) //Retrieves one document that has the name property equal to 'John'.
+                - findById()
+                    Used to retrieve one document from the database. We can use the following methods to filter the
+                    documents:
+                        findById('5f9c1b9b9b9b9b9b9b9b9b9b') //Retrieves one document that has the id property equal to '5f9c1b9b9b9b9b9b9b9b9b9b'.
+                - count()
+                    Used to count the number of documents in the database. We can use the following methods to filter the
+                    documents:
+                        count({ name: 'John' }) //Counts the number of documents that have the name property equal to 'John'.
+                - countDocuments()
+                    Used to count the number of documents in the database. We can use the following methods to filter the
+                    documents:
+                        countDocuments({ name: 'John' }) //Counts the number of documents that have the name property equal to 'John'.
+                - limit()
+                    Used to limit the number of documents that are retrieved from the database.
+                    .limit(10) //Retrieves only 10 documents from the database.
+                - sort()
+                    Used to sort the documents that are retrieved from the database.
+                    .sort({ name: 1 }) //Retrieves the documents from the database and sorts them by name in ascending order.
+                    .sort({ name: -1 }) //Retrieves the documents from the database and sorts them by name in descending order.
+                - select()
+                    Used to select the properties of the documents that are retrieved from the database.
+                    .select({ name: 1, email: 1 }) //Retrieves the documents from the database and selects only the name and email properties.
+                    .select({ name: 1, email: 1, _id: 0 }) //Retrieves the documents from the database and selects only the name and email properties and excludes the _id property.
+                - estimatedDocumentCount()
+                - distinct()
+                - where()
+                - findAndModify()
+                - findOneAndRemove()
+                - findOneAndUpdate()
+                - findOneAndReplace()
+                - update()
+                - updateOne()
+                - updateMany()
+                - replaceOne()
+                - deleteOne()
+                - deleteMany()
+                - bulkWrite()
+                - find().count()
+                - find().countDocuments()
+                - find().estimatedDocumentCount()
+                - find().distinct()
+                - find().where()
+                - find().findAndModify()
+                - find().findOneAndRemove()
+                - find().findOneAndUpdate()
+                - find().findOneAndReplace()
+                - find().update()
+                - find().updateOne()
+                - find().updateMany()
+                - find().replaceOne()
+                - find().deleteOne()
+                - find().deleteMany()
+                - find().bulkWrite()
+        
+        Comparison Query Operators:
+            Comparison Query Operators are used to compare the values of two documents. We can use the following
+            comparison query operators:
+                - eq (equal)
+                    Used to compare the values of two documents.
+                    .find({ name: { $eq: 'John' } })
+                        //Retrieves all the documents that have the name property equal to 'John'.
+                - ne (not equal)
+                    Used to compare the values of two documents.
+                    .find({ name: { $ne: 'John' } })
+                        //Retrieves all the documents that have the name property not equal to 'John'.
+                - gt (greater than)
+                    Used to compare the values of two documents.
+                    .find({ age: { $gt: 20 } })
+                        //Retrieves all the documents that have the age property greater than 20.
+                - gte (greater than or equal to)
+                    Used to compare the values of two documents.
+                    .find({ age: { $gte: 20 } })
+                        //Retrieves all the documents that have the age property greater than or equal to 20.
+                - lt (less than)
+                    Used to compare the values of two documents.
+                    .find({ age: { $lt: 20 } })
+                        //Retrieves all the documents that have the age property less than 20.
+                - lte (less than or equal to)
+                    Used to compare the values of two documents.
+                    .find({ age: { $lte: 20, $gte: 5 } })
+                        //Retrieves all the documents that have the age property greater than 10 and less than or equal to 20.
+                - in
+                    Used to compare the values of two documents.
+                    .find({ age: { $in: [20, 30, 40] } })
+                        //Retrieves all the documents that have the age property equal to 20, 30 or 40.
+                - nin (not in)
+                    Used to compare the values of two documents.
+                    .find({ age: { $nin: [20, 30, 40] } })
+                        //Retrieves all the documents that have the age property not equal to 20, 30 or 40.
+
+        Logical Query Operators:
+            Logical Query Operators are used to combine multiple queries. We can use the following logical query
+            operators:
+                - or
+                    Used to combine multiple queries.
+                    .find().or([{ name: 'John' }, { age: 20 }])
+                        //Retrieves all the documents that have the name property equal to 'John' or the age property equal to 20.
+                - and
+                    Used to combine multiple queries.
+                    .find().and([{ name: 'John' }, { age: 20 }])
+                        //Retrieves all the documents that have the name property equal to 'John' and the age property equal to 20.
+                - nor
+                    Used to combine multiple queries.
+                    .find().nor([{ name: 'John' }, { age: 20 }])
+                        //Retrieves all the documents that have the name property not equal to 'John' and the age property not equal to 20.
+                - not
+                    Used to combine multiple queries.
+                    .find().not([{ name: 'John' }, { age: 20 }])
+                        //Retrieves all the documents that have the name property not equal to 'John' and the age property not equal to 20.
+
+        Regular Expressions:
+            Regular Expressions are used to match documents based on a pattern. We can use the following regular
+            expressions:
+                - Starts with
+                    Used to match documents that start with a specific pattern.
+                    .find({ name: /^John/ })
+                        //Retrieves all the documents that have the name property that starts with 'John'.
+                - Ends with
+                    Used to match documents that end with a specific pattern.
+                    .find({ name: /John$/ })
+                        //Retrieves all the documents that have the name property that ends with 'John'.
+                - Contains
+                    Used to match documents that contain a specific pattern.
+                    .find({ name: /John/ })
+                        //Retrieves all the documents that have the name property that contains 'John'.
+                - Case insensitive
+                    Used to match documents that contain a specific pattern.
+                    .find({ name: /john/i })
+                        //Retrieves all the documents that have the name property that contains 'john' or 'John'.
+                - Multiple conditions
+                    Used to match documents that contain a specific pattern.
+                    .find({ name: /john/i, age: 20 })
+                        //Retrieves all the documents that have the name property that contains 'john' or 'John' and the age property equal to 20.
+                - Multiple patterns
+                    Used to match documents that contain a specific pattern.
+                    .find({ name: { $in: [/john/i, /jane/i] } })
+                        //Retrieves all the documents that have the name property that contains 'john' or 'John' or 'jane' or 'Jane'.
+        
+
+    Updating documents:
+        We can update documents in MongoDB using the following methods:
+            1. Query first:
+                We can update documents by querying the document first and then updating it. We can use the following
+                methods to update documents:
+                    - findById()
+                        Used to update a document by its id.
+                        .findByIdAndUpdate('id', { $set: { name: 'Jane' } })
+                            //Updates the document with the id 'id' and sets the name property to 'Jane'.
+                    Simply we can write this function for updating a document:
+                        async function updateCourse(id) {
+                            const course = await Course.findById(id);
+                            if (!course) return;
+                            course.isPublished = true;
+                            course.author = 'Another Author';
+                                /* We can write the above two lines as:
+                                    course.set({
+                                    isPublished: true,
+                                    author: 'Another Author'
+                                    }); 
+                                */
+                            const result = await course.save();
+                            console.log(result);
+                        }
+
+            2. Update first:
+                We can update documents by updating the document directly and optionally setting the new option
+                to true to return the updated document. By this approach we update directly the document without
+                querying it first. We can use the following methods to update documents:
+                    - update()
+                        Used to update a document.
+                        .update({ _id: 'id' }, {
+                            $set: {
+                                name: 'Jane'
+                            }
+                        })
+                            //Updates the document with the id 'id' and sets the name property to 'Jane'.
+                    - findByIdAndUpdate()
+                        Used to update a document by its id.
+                        .findByIdAndUpdate('id', { $set: { name: 'Jane' } , {new: true} })
+                            //Updates the document with the id 'id' and sets the name property to 'Jane' and returns the updated document.
+                    - updateOne()
+                        Used to update a single document.
+                        .updateOne({ name: 'John' }, { $set: { name: 'Jane' } })
+                            //Updates the first document that has the name property equal to 'John' and sets the name property to 'Jane'.
+                    - updateMany()
+                        Used to update multiple documents.
+                        .updateMany({ name: 'John' }, { $set: { name: 'Jane' } })
+                            //Updates all the documents that have the name property equal to 'John' and sets the name property to 'Jane'.
+                    - replaceOne()
+                        Used to replace a document.
+                        .replaceOne({ name: 'John' }, { name: 'Jane' })
+                            //Replaces the first document that has the name property equal to 'John' with the document { name: 'Jane' }.
+                    
+                    Simply we can write this function for updating a document:
+                        async function updateCourse(id) {
+                            const result = await Course.findByIdAndUpdate(id, {
+                                $set: {
+                                    name: 'Jane',
+                                    age: 20
+                                }, { new: true });
+                            console.log(result);
+                        }
+
+                Update Operators:
+                    These operators are used to update the properties of a document. We can use the following update
+                    operators:
+                        - set
+                            Used to update the properties of a document.
+                            .findByIdAndUpdate('id', { $set: { name: 'Jane' } })
+                                //Updates the document with the id 'id' and sets the name property to 'Jane'.
+                        - unset
+                            Used to remove the properties of a document.
+                            .findByIdAndUpdate('id', { $unset: { name: '' } })
+                                //Updates the document with the id 'id' and removes the name property.
+                        - inc
+                            Used to increment the value of a property.
+                            .findByIdAndUpdate('id', { $inc: { age: 1 } })
+                                //Updates the document with the id 'id' and increments the age property by 1.
+                        - min
+                            Used to update the value of a property if the new value is less than the current value.
+                            .findByIdAndUpdate('id', { $min: { age: 1 } })
+                                //Updates the document with the id 'id' and sets the age property to 1 if the current value is less than 1.
+                        - max
+                            Used to update the value of a property if the new value is greater than the current value.
+                            .findByIdAndUpdate('id', { $max: { age: 1 } })
+                                //Updates the document with the id 'id' and sets the age property to 1 if the current value is greater than 1.
+                        - mul
+                            Used to multiply the value of a property.
+                            .findByIdAndUpdate('id', { $mul: { age: 2 } })
+                                //Updates the document with the id 'id' and multiplies the age property by 2.
+                        - rename
+                            Used to rename a property.
+                            .findByIdAndUpdate('id', { $rename: { name: 'firstName' } })
+                                //Updates the document with the id 'id' and renames the name property to firstName.
+                        - setOnInsert
+                            Used to set a property if the document is inserted.
+                            .findByIdAndUpdate('id', { $setOnInsert: { name: 'Jane' } })
+                                //Updates the document with the id 'id' and sets the name property to 'Jane' if the document is inserted.
+                        - currentDate
+                            Used to set the value of a property to the current date.
+                            .findByIdAndUpdate('id', { $currentDate: { createdAt: true } })
+                                //Updates the document with the id 'id' and sets the createdAt property to the current date.
+                        - addToSet
+                            Used to add a value to an array if the value is not in the array.
+                            .findByIdAndUpdate('id', { $addToSet: { tags: 'frontend' } })
+                                //Updates the document with the id 'id' and adds the value 'frontend' to the tags array if the value is not in the array.
+
+    Removing documents:
+        We can delete or removes documents in mongodb using the following methods:
+            - deleteOne()
+                Used to delete a single document.
+                .deleteOne({ name: 'John' })
+                    //Deletes the first document that has the name property equal to 'John'.
+            - deleteMany()
+                Used to delete multiple documents.
+                .deleteMany({ name: 'John' })
+                    //Deletes all the documents that have the name property equal to 'John'.
+            - findByIdAndRemove()
+                Used to delete a document by its id.
+                .findByIdAndRemove('id')
+                    //Deletes the document with the id 'id'.
+            - remove()
+                Used to delete a document.
+                .remove({ name: 'John' })
+                    //Deletes the first document that has the name property equal to 'John'.
+            - findOneAndRemove()
+                Used to delete a document.
+                .findOneAndRemove({ name: 'John' })
+                    //Deletes the first document that has the name property equal to 'John'.
+            - findOneAndDelete()
+                Used to delete a document.
+                .findOneAndDelete({ name: 'John' })
+                    //Deletes the first document that has the name property equal to 'John'.
+            - findByIdAndDelete()
+                Used to delete a document by its id.
+                .findByIdAndDelete('id')
+                    //Deletes the document with the id 'id'.
+            - drop()
+                Used to delete all the documents in a collection.
+                .drop()
+                    //Deletes all the documents in the collection.
+            - dropCollection()
+                Used to delete a collection.
+                .dropCollection()
+                    //Deletes the collection.
+            - dropDatabase()
+                Used to delete a database.
+                .dropDatabase()
+                    //Deletes the database.
+
+            We can use the following function to delete a document:
+                async function removeCourse(id) {
+                    //const result = await Course.deleteOne({ _id: id, isPublished: true });
+                    //console.log(result);
+                    const course = await Course.findByIdAndRemove(id);
+                    console.log(course);
+                }
+
+    Validation:
+        We can validate the data that is inserted into a collection using the following methods:
+            - validate()
+                Used to validate a document.
+                .validate()
+                    //Validates the document.
+            - validateSync()
+                Used to validate a document synchronously.
+                .validateSync()
+                    //Validates the document synchronously.
+            - isValid()
+                Used to check if a document is valid.
+                .isValid()
+                    //Checks if the document is valid.
+            - ValidationError
+                Used to get the error message when a document is not valid.
+                .ValidationError
+                    //Gets the error message when a document is not valid.
+
+        We should use the schema to validate a document:
+            const courseSchema = new mongoose.Schema({
+                name: { type: String, required: true },
+                email: { type: String, required: true, min: 5, max: 255 },
+                password: { type: String, required: true, min: 5, max: 1024 },
+                price: { type: Number, required: function() { return this.isPublished; } }
+                    //We can't use arrow functions here because we need to use the this keyword.
+                    //price is only required if isPublished is true.
+            });
+
+        Built in validation:
+            This are the built in validation that are available in mongoose:
+                - required
+                    Used to make a property required.
+                    .required()
+                        //Makes the property required.
+                - minlength
+                    Used to set the minimum length of a string.
+                    .minlength(5)
+                        //Sets the minimum length of a string to 5.
+                - maxlength
+                    Used to set the maximum length of a string.
+                    .maxlength(255)
+                        //Sets the maximum length of a string to 255.
+                - min
+                    Used to set the minimum value of a number.
+                    .min(5)
+                        //Sets the minimum value of a number to 5.
+                - max
+                    Used to set the maximum value of a number.
+                    .max(255)
+                        //Sets the maximum value of a number to 255.
+                - match
+                    Used to set a regular expression to match a string.
+                    .match(/pattern/)
+                        //Sets a regular expression to match a string.
+                - enum
+                    Used to set a list of values that a property can have.
+                    .enum(['value1', 'value2'])
+                        //Sets a list of values that a property can have.
+                - lowercase
+                    Used to convert a string to lowercase.
+                    .lowercase()
+                        //Converts a string to lowercase.
+                - uppercase
+                    Used to convert a string to uppercase.
+                    .uppercase()
+                        //Converts a string to uppercase.
+                - trim
+                    Used to trim a string.
+                    .trim()
+                        //Trims a string.
+                - get
+                    Used to get a value from a property.
+                    .get(v => Math.round(v))
+                        //Gets a value from a property.
+                - set
+                    Used to set a value to a property.
+                    .set(v => Math.round(v))
+                        //Sets a value to a property.
+
+        Custom validation:
+            We can create our own validation using the following methods:
+                - validate
+                    Used to validate a property.
+                    .validate({
+                        validator: function(v) {
+                            return v && v.length > 0;
+                        },
+                        message: 'A course should have at least one tag.'
+                    })
+                        //Validates a property.
+                - custom
+                    Used to validate a property.
+                    .custom(v => {
+                        return v && v.length > 0;
+                    })
+                        //Validates a property.
+
+        Async Validation:
+            We can validate a property asynchronously using the following methods:
+                - validate
+                    Used to validate a property asynchronously.
+                    .validate({
+                        isAsync: true,
+                        validator: function(v, callback) {
+                            setTimeout(() => {
+                                const result = v && v.length > 0;
+                                callback(result);
+                            }, 4000);
+                        },
+                        message: 'A course should have at least one tag.'
+                    })
+                        //Validates a property asynchronously.
+                - custom
+                    Used to validate a property asynchronously.
+                    .custom((v, callback) => {
+                        setTimeout(() => {
+                            const result = v && v.length > 0;
+                            callback(result);
+                        }, 4000);
+                    })
+                        //Validates a property asynchronously.
+
+        Validation Errors:
+            We can get the error message when a document is not valid using the following methods:
+            We can use this syntax to display errors in each property:
+                try{
+                    const result = await course.save();
+                    console.log(result);
+                }
+                catch(ex) {
+                    for(field in ex.errors)
+                        console.log(ex.errors[field].message);
+                }
+
+    Modeling relationships:
+        In NoSQL databases we can model relationships using the following methods:
+            1. Normalization:
+                We use this method to model relationships between collections.
+                We use this manly for consistency.
+
+            2. Denormalization:
+                We use this method to model relationships between collections.
+                We use this manly for performance.
+
+        Referencing Documents:
+            We can use this method to model relationships between collections.
+            We use this method when we want to query the related documents.
+            We can use this method to model one-to-one and one-to-many relationships.
+
+            We can use the following function and schema to model a relationship:
+                "const authorSchema = new mongoose.Schema({
+                    name: String,
+                    bio: String,
+                    website: String
+                });
+
+                const Author = mongoose.model('Author', authorSchema);
+
+                const Course = mongoose.model('Course', new mongoose.Schema({
+                    name: String,
+                    author:{
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: 'Author'
+                    }
+                }));"
+
+            We can use the following function to create a document:
+                "async function createCourse(name, author) {
+                    const course = new Course({
+                        name,
+                        author
+                    });
+
+                    const result = await course.save();
+                    console.log(result);
+                }"
+        
+        Population:
+            We use this method to query the related documents. The following are Some
+            of the methods that we can use to query the related documents:
+                - populate()
+                    Used to query the related documents. it has two arguments the first
+                    argument is the name of the property that we want to query and the
+                    second argument is the name of the collection that we want to query.
+                    " .populate('Author', 'name -_id')"
+                       //Queries the related documents (Author) and returns the name of the author
+                        //and excludes the id of the author.
+            To populate more than one property we can use the populate() again as shown 
+            in the following syntax:
+                " .populate('Author', 'name -_id')
+                  .populate('Category', 'name')"
+                       //Queries the related documents (Author) and returns the name of the author
+                        //and excludes the id of the author.
+                        //Queries the related documents (Category) and returns the name of the category.
+
+        Embedding Documents:
+            We can embed documents in other documents and returns the embedded documents
+            when we query the parent document.
+                - We can use the following syntax to embed documents:
+                    "const authorSchema = new mongoose.Schema({
+                        name: String,
+                        bio: String,
+                        website: String
+                    });
+
+                    const Author = mongoose.model('Author', authorSchema);
+
+                    const Course = mongoose.model('Course', new mongoose.Schema({
+                        name: String,
+                        author:{
+                            type: authorSchema,
+                            required: true
+                        }
+                    }));"
+
+                - We can use the following syntax to create a document:
+                    "async function createCourse(name, author) {
+                        const course = new Course({
+                            name,
+                            author
+                        });
+
+                        const result = await course.save();
+                        console.log(result);
+                    }"
+
+        
+
+                
+                        

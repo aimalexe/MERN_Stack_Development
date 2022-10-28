@@ -1,0 +1,556 @@
+Backend:
+    Backend is the part of the application that is not visible to the user. It is the part of the application
+    that is responsible for storing and retrieving data from the database. It is also responsible for
+    processing the data and sending it to the frontend.
+
+    Backend framework:
+        Backend framework is a software framework that is designed to support the development of web applications
+        including web services, web resources, and web APIs. Backend frameworks are usually written in
+        high-level programming languages such as Java, Python, PHP, and Ruby.
+
+        Express Js:
+            Express Js is a web application framework for Node Js. It is used to build web applications and APIs.
+            It is a minimal and flexible Node Js web application framework that provides a robust set of features
+            for web and mobile applications. It is used to build single-page, multi-page, and hybrid web applications.
+            Mainly its work is to handle the HTTP requests from frontend and send the response from the backend.
+            
+            REST Api? :
+                REST stands for Representational State Transfer. It is an architectural style for designing
+                networked applications. It is a set of constraints that developers follow while creating
+                web services.
+
+            HTTP Methods:
+                HTTP methods are used to perform different operations on the resources. There are many types of
+                HTTP methods:
+                    - GET: It is used to retrieve/getting the data from the server. (read)
+                    - POST: It is used to send the data to the server. (create)
+                    - PUT: It is used to update the data on the server. (update)
+                    - DELETE: It is used to delete the data from the server. (delete)
+                    - PATCH: It is used to update the data partially on the server. (update)
+                    - HEAD: It is used to retrieve the metadata from the server. (read)
+                    - OPTIONS: It is used to retrieve the supported HTTP methods from the server. (read)
+
+            How to start Express js:
+                - Initialize the project by using " npm init -y " command.
+                - Install express js by using " npm install express " command.
+                - Create a file named "index.js" and write the following code in it.
+
+                   " const express = require('express');
+                    const PORT = system.env.PORT || 3000; // PORT is the port number on which the server will run.
+                    const app = express();
+
+                    app.listen(3000, () => {
+                        console.log(`Server is running on port ${PORT}`);
+                    }); "
+
+                - Run the server by using " node index.js " command.
+                - Open the browser and type " localhost:3000 " in the address bar.
+                - app has many methods like get, post, put, delete, patch, head, options, etc.
+                    - app.get() method is used to handle the GET request.
+                    - app.post() method is used to handle the POST request.
+                    - app.put() method is used to handle the PUT request.
+                    - app.delete() method is used to handle the DELETE request.
+                    - app.patch() method is used to handle the PATCH request. etc
+                    These methods take two parameters:
+                        - First parameter is the route or the path.
+                        - Second parameter is the callback function which takes two parameters:
+                            1. req: It is the request object. It contains the information about the request.
+                                - req.body: It contains the data sent by the client.
+                                - req.params: It contains the parameters sent by the client.
+                                - req.query: It contains the query string sent by the client.
+                                - req.headers: It contains the headers sent by the client.
+                                - req.cookies: It contains the cookies sent by the client.
+                                - req.ip: It contains the IP address of the client.
+                                - req.method: It contains the HTTP method used by the client.
+                                - req.path: It contains the path of the request.
+                                - req.protocol: It contains the protocol used by the client.
+                                - req.subdomains: It contains the subdomains of the client.
+                                - req.xhr: It contains the boolean value that indicates whether the request is
+                                    an AJAX request or not.
+                            2. res: It is the response object. It is used to send the response to the client.
+                                - res.send(): It is used to send the response to the client.
+                                - res.json(): It is used to send the JSON response to the client.
+                                - res.status(): It is used to set the status code of the response.
+                                - res.cookie(): It is used to set the cookie in the response.
+                                - res.redirect(): It is used to redirect the client to another page.
+                                - res.download(): It is used to download the file to the client.
+                                - res.sendFile(): It is used to send the file to the client.
+                                - res.render(): It is used to render the HTML file to the client.
+                                - res.set(): It is used to set the header in the response.
+                                - res.type(): It is used to set the content type of the response.
+                                - res.append(): It is used to append the value to the header in the response.
+                                - res.end(): It is used to end the response.
+                                - res.format(): It is used to send the response in different formats.
+                                - res.get(): It is used to get the value of the header in the response.
+                                - res.links(): It is used to set the links in the response.
+                                - res.location(): It is used to set the location in the response.
+                                - res.vary(): It is used to set the vary in the response.
+                                - res.write(): It is used to write the data in the response.
+                                - res.writeContinue(): It is used to write the continue in the response.
+                                - res.writeHead(): It is used to write the header in the response.
+                                - res.writeProcessing(): It is used to write the processing in the response.
+
+
+            Environment Variables:
+                Environment variables are the variables that are used to store the information about the
+                environment. It is used to store the sensitive information like database credentials, API keys,
+                etc. It is used to store the information that is different for different environments like
+                development, testing, production, etc. It is used to store the information that is different
+                for different users. It is used to store the information that is different for different
+                machines. It is used to store the information that is different for different versions of
+                the application.
+                Some of these are:
+                    - PORT: It is the port number on which the server will run.
+                    - NODE_ENV: It is the environment in which the server will run.
+                    - DATABASE_URL: It is the URL of the database.
+                    - DATABASE_USERNAME: It is the username of the database.
+                    - DATABASE_PASSWORD: It is the password of the database.
+                    - DATABASE_NAME: It is the name of the database.
+                    - DATABASE_HOST: It is the host of the database.
+                    - DATABASE_PORT: It is the port number of the database.
+                How to use environment variables:
+                    - Create a file named ".env" and write the following code in it.
+
+                        " PORT=3000
+                        NODE_ENV=development
+                        DATABASE_URL=postgres://localhost:5432
+                        DATABASE_USERNAME=postgres
+                        DATABASE_PASSWORD=postgres
+                        DATABASE_NAME=postgres
+                        DATABASE_HOST=localhost
+                        DATABASE_PORT=5432 "
+
+                    - Install dotenv by using " npm install dotenv " command.
+                        Dotenv is a zero-dependency module that loads environment variables from a .env file
+                        into process.env. Storing configuration in the environment separate from code is based
+                        on The Twelve-Factor App methodology.
+                    - Require dotenv in the index.js file.
+                        " require('dotenv').config(); " or " require('dotenv/config'); "
+                    - Now you can access the environment variables by using " process.env.ENVIRONMENT_VARIABLE_NAME ".
+                        For example, you can access the PORT by using " process.env.PORT ".
+                    - Environment:
+                        Environment is the place where the application is running. It can be development, production,
+                        testing or staging. We can set the environment by using the NODE_ENV environment variable. Syntax is:
+                            " NODE_ENV=development "
+                        We can access the environment by using " process.env.NODE_ENV ".
+                        We can also set the environment by using the app.set() method. Syntax is:
+                            " app.set('env', 'development'); "
+                        We can access the environment by using " app.get('env') ".
+                        We should use the environment to set the configuration of the application. and use the 
+                        middleware for specific environments. For example, we can use the morgan middleware for
+                        development environment and we can use the helmet middleware for production environment.
+                        as:
+                            " if (app.get('env') === 'development') {
+                                app.use(morgan('tiny'));
+                                console.log('Morgan enabled...');
+                            } 
+                            if (app.get('env') === 'production') {
+                                app.use(helmet());
+                                console.log('Helmet enabled...');
+                            } "
+                    - Configuration:
+                        It is used to set the configuration of the application. Configuration is of two types:
+                            1. Application Configuration.
+                            2. Environment Configuration.
+                        We use this packages for configuration:
+                            - config: It is used to set the configuration of the application.
+                                We should make a folder named 'config' and make a file named 'default.json' in it. Syntax is:
+                                    " {
+                                        "name": "Express Application"
+                                    } "
+                                also a file named 'development.json' in it. Syntax is:
+                                    " {
+                                        "name": "Express Application Development"
+                                    } "
+                            - dotenv: It is used to set the environment configuration.
+                            - rc : It is used to set the configuration of the application.
+
+
+            Route Parameters and Query String:
+                Parameters:
+                    Route parameters are the parameters that are used to send the data to the server. Syntax is:
+                        " /:parameter_name "
+                    For example, if you want to send the id of the user to the server, then the syntax is:
+                        " /:id "
+                    You can access the route parameters by using " req.params.parameter_name ".
+                    For example, you can access the id by using " req.params.id ".
+                    You can also use multiple route parameters. Syntax is:
+                        " /:parameter_name1/:parameter_name2 "
+                        " app.get('/users/:id', (req, res) => {
+                            res.send(req.params.id);
+                        }); "
+                Query String:
+                    Query string is the part of the URL that comes after the question mark (?). It is used to send
+                    the data to the server. Syntax is:
+                        " ?parameter_name1=parameter_value1&parameter_name2=parameter_value2 "
+                    For example, if you want to send the id and name of the user to the server, then the syntax is:
+                        " ?id=1&name=John "
+                    You can access the query string by using " req.query.parameter_name ".
+                    For example, you can access the id by using " req.query.id ".
+                    You can also use multiple query strings. Syntax is:
+                        " ?parameter_name1=parameter_value1&parameter_name2=parameter_value2 "
+                        " app.get('/users', (req, res) => {
+                            res.send(req.query.id);
+                        }); "
+
+
+            Middleware :
+                Middleware is a function that has access to the request object (req), the response object (res),
+                and the next middleware function in the application’s request-response cycle. The next middleware
+                function is commonly denoted by a variable named next. This function are run before the request is
+                made. Middleware functions can perform the following tasks:
+                    - Execute any code.
+                    - Make changes to the request and the response objects.
+                    - End the request-response cycle.
+                    - Call the next middleware function in the stack.
+                Middleware are of three types:
+                    1. Builtin middleware:
+                        This middleware are built-in to Express. They are:
+                            - express.json(): It is used to parse the JSON data in the request body.
+                            - express.urlencoded(): It is used to parse the URL-encoded data in the request body.
+                            we should pass the extended option to true to parse the nested objects. as:
+                                " app.use(express.urlencoded({ extended: true })); "
+                            - express.raw(): It is used to parse the raw data in the request body.
+                            - express.text(): It is used to parse the text data in the request body.
+                            - express.static(): It is used to serve the static files.
+                            - express.Router(): It is used to create the router.
+                    2. Custom middleware:
+                        This middleware are created by the developer to perform the specific task. Syntax is:
+                            " app.use((req, res, next) => {
+                                // Code
+
+                                next();
+                            }); "
+                        next is a function that is used to call the next middleware in the stack. If you don't call
+                        next(), then the request will be stuck in the middleware and the response will not be sent.
+                    3. Third-party middleware:
+                        This middleware are created by the third-party to perform the specific task. Syntax is:
+                            " app.use(middleware); "
+                        For example, if you want to use the helmet middleware, which is used to set the security, its syntax is:
+                            " npm install helmet "
+                            " app.use(helmet()); "
+                        Some of other useful middleware are:
+                            - morgan: It is used to log the request.
+                            - compression: It is used to compress the response.
+                            - helmet: It is used to set the security.
+                            - cors: It is used to enable the CORS.
+                            - body-parser: It is used to parse the request body.
+                            - cookie-parser: It is used to parse the cookies.
+                            - debug: It is used to debug the application.
+                            - errorhandler: It is used to handle the errors.
+                            - method-override: It is used to override the HTTP methods.
+                            - serve-favicon: It is used to serve the favicon.
+                            - serve-static: It is used to serve the static files.
+                            - winston: It is used to log the request.
+                            - express-validator: It is used to validate the request body.
+                            - express-jwt: It is used to validate the JWT.
+                            - express-session: It is used to manage the session.
+                            - express-fileupload: It is used to upload the files.
+                            - express-flash: It is used to flash the messages.
+                            - express-mongo-sanitize: It is used to sanitize the data.
+            
+            Template Engines:
+                Template Engines are used to generate the HTML pages dynamically. It is used to generate the HTML
+                pages from the server. We have the following template engines:
+                    - Pug
+                    - Mustache
+                    - EJS
+                    - Handlebars
+                    - Nunjucks
+
+                We are using pug for template engines. Syntax is:
+                    " npm install pug "
+
+                    " app.set('view engine', 'pug'); "
+                        // we will not import the pug module. It is built-in to express after the above line.
+                    " app.set('views', './views'); " // this is optional/default. It is used to set the path of the views folder.
+                    " app.get('/', (req, res) => {
+                        res.render('index', { title: 'My Express App', message: 'Hello' });
+                    }); "
+                    render is a function that is used to render the pug file. It takes two parameters:
+                        - The name of the pug file.
+                        - The object that contains the data that is used to render the pug file.
+                    we have to create a folder named 'views' in the root directory. In it, we have to create a file
+                    named 'index.pug'. Syntax is:
+                        " html
+                            head
+                                title= title
+                            body
+                                h1= message "
+                   
+
+
+            Sending Data to server:
+                We can send data to server from frontend in three methods:
+                    - Body:
+                        In this method we send data in the body of the request. We can send data in the body of the
+                        request in two ways:
+                            - JSON:
+                                In this method we send data in JSON format. We can send data in JSON format by using
+                                " res.json() " method. This method is used to send JSON response. It takes one argument
+                                which is the data that we want to send to the server. It is used to send data in JSON
+                                format.
+
+                                How to use res.json() method:
+                                    - Create a file named "index.js" and write the following code in it.
+                                        " const express = require('express');
+                                        const app = express();
+
+                                        app.use(express.json());
+
+                                        app.post('/user', (req, res) => {
+                                            console.log(req.body);
+                                            res.json(req.body);
+                                        });
+
+                                        app.listen(3000, () => {
+                                            console.log(`Server is running on port 3000`);
+                                        }); "
+                                    - Run the server by using " node index.js " command.
+                                    - Open the browser and type " localhost:3000 " in the address bar.
+                                    - Open the browser console and type the following code in it.
+                                        " fetch('http://localhost:3000/user', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                name: 'John',
+                                                age: 30
+                                            })
+                                        })
+                                        .then(res => res.json())
+                                        .then(data => console.log(data)); "
+
+                            - URL:
+                                In this method we send data in URL format. We can send data in URL format by using
+                                " res.send() " method. This method is used to send string response. It takes one argument
+                                which is the data that we want to send to the server. It is used to send data in URL
+                                format.
+
+                                How to use res.send() method:
+                                    - Create a file named "index.js" and write the following code in it.
+                                        " const express = require('express');
+                                        const app = express();
+
+                                        app.use(express.urlencoded({ extended: true }));
+
+                                        app.post('/user', (req, res) => {
+                                            console.log(req.body);
+                                            res.send(req.body);
+                                        });
+
+                                        app.listen(3000, () => {
+                                            console.log(`Server is running on port 3000`);
+                                        }); "
+                                    - Run the server by using " node index.js " command.
+                    -Headers:
+                        In this method we send data in the headers of the request. We can send data in the headers of the
+                        request by using " res.set() " method. This method is used to set HTTP response header field.
+                        It takes two arguments which are the name of the header and the value of the header. It is used
+                        to send data in the headers of the request.
+
+                        How to use res.set() method:
+                            - Create a file named "index.js" and write the following code in it.
+                                " const express = require('express');
+                                const app = express();
+
+                                app.post('/user', (req, res) => {
+                                    console.log(req.headers);
+                                    res.set('Content-Type', 'application/json');
+                                    res.send(req.headers);
+                                });
+
+                                app.listen(3000, () => {
+                                    console.log(`Server is running on port 3000`);
+                                }); "
+                            - Run the server by using " node index.js " command.
+                    -Query:
+                        In this method we send data in the query of the request. We can send data in the query of the
+                        request by using " res.send() " method. This method is used to send string response. It takes
+                        one argument which is the data that we want to send to the server. It is used to send data in
+                        the query of the request.
+
+                        How to use res.send() method:
+                            - Create a file named "index.js" and write the following code in it.
+                                " const express = require('express');
+                                const app = express();
+
+                                app.get('/user', (req, res) => {
+                                    console.log(req.query);
+                                    res.send(req.query);
+                                });
+
+                                app.listen(3000, () => {
+                                    console.log(`Server is running on port 3000`);
+                                }); "
+                            - Run the server by using " node index.js " command.
+                            - Open the browser and type " localhost:3000/user?name=John&age=30 " in the address bar.
+
+
+            Routes:
+                Routes are the endpoints of the application. It is the part of the application that is responsible
+                for handling the requests from the frontend and sending the response to the frontend. It is also
+                responsible for handling the requests from the frontend and sending the response to the frontend.
+
+                How to create routes:
+                    - Create a folder named "routes" and write the following code in a file in it.
+                        " const express = require('express');
+                        const user = express.Router();     // Or simply as: const userRoute = require('express').Router();
+
+                        user.get('/user', (req, res) => {
+                            res.send('Hello User!');
+                        });
+                        module.exports = user; "
+                    - Import the route in the "index.js" file.
+                        " const user = require('./routes/user'); "
+                    - Use the route in the "index.js" file.
+                        " app.use('/api', user); "
+
+
+            Security:
+                We have to take care of the security of our application. It is of three types:
+                    -1 Frontend:
+                        We have to take care of the security of the frontend of our application. It is of two types:
+                            -1.1 Cross-Site Scripting (XSS):
+                                Cross-Site Scripting (XSS) is a type of security vulnerability that allows an attacker
+                                to inject malicious code into a web application.
+                            -1.2 Cross-Site Request Forgery (CSRF):
+                                Cross-Site Request Forgery (CSRF) is a type of security vulnerability that allows an
+                                attacker to trick a user into performing an unwanted action on a web application.
+                    -2 Backend/Api:
+                        We have to take care of the security of the backend/api of our application. So we must validate the
+                        data that we receive from the frontend. Because user can deactivate the javascript and hence frontend validation.
+                        
+                        Validation:
+                            For validation we use " Joi " package. It is used to validate the data that we receive from the
+                            frontend. Its Syntax is:
+                                "npm i joi"
+                                Then in the file where we want to validate the data we write the following code:
+                                    " const Joi = require('joi');
+
+                                    const schema = Joi.object({
+                                        name: Joi.string().min(3).required(),
+                                        age: Joi.number().min(18).required(),
+                                        password: Joi.min(3).required(),
+                                        email: Joi.email().required()
+                                    });
+
+                                    const result = schema.validate(req.body);
+
+                                    if (result.error) {
+                                        res.status(400).send(result.error.details[0].message);
+                                        return;
+                                    } "
+                            We should write this validation code in a separate file and then import it in the file where we
+                            want to validate the data. This is because we can use this validation code in multiple files.
+                            We must export it like this:
+                                " module.exports.userSchema = userSchema;
+                                module.exports.userLoginSchema = userLoginSchema; "
+                            And then import it like this:
+                                " const { userSchema, userLoginSchema } = require('./validation/schemas'); "
+
+                        Password security:
+                            We should not store the password in the database in plain text. We should store it in the
+                            database in the form of hash. For this we use " bcrypt " package. 
+                            Hash:
+                                Hash is technique of converting the plain text into a string of characters that cannot be
+                                reversed. It is used to make the password more secure.
+                            Salt: 
+                                Salt is a random string of characters that is added to the password before hashing. It is
+                                used to make the hash more secure.
+                            It is one-way process and it cannot be reversed. It will take a supercomputer to reverse it in 
+                            almost 100 years. So we compare the hash of the password that we receive from the frontend with
+                            the hash of the password that is stored in the database. If both the hashes are same then the
+                            password is correct. If both the hashes are not same then the password is incorrect.
+                            Its Syntax is:
+                                "npm i bcrypt"
+                            Then in the file where we want to store the password in the database we write the following code:
+                                    " const bcrypt = require('bcrypt');
+                                    .
+                                    .
+                                    async....
+                                    const salt = await bcrypt.genSalt(10);
+                                    const hash = await bcrypt.hash(req.body.password, salt); 
+                                    const valid = await bcrypt.compare(req.body.password, user.password); "
+                            - genSalt() method is used to generate the salt. It takes one argument which is the number of
+                            rounds. The higher the number of rounds the more secure the password will be. It is an
+                            asynchronous function.
+                            - hash() method is used to generate the hash. It takes two arguments which are the password
+                            and the salt. It is an asynchronous function.
+                            - compare() method is used to compare the hash of the password that we receive from the frontend
+                            with the hash of the password that is stored in the database. It takes two arguments which are
+                            the password and the hash of the password that is stored in the database. It is an asynchronous
+                            function and returns a boolean value.
+
+                    -3 Database:
+                        We have to take care of the security of the database of our application.
+
+            
+            Authentication:
+                Authentication is the process of verifying the identity of a user.
+                
+            Authorization:
+                Authorization is the process of verifying the permissions of a user. JWT is used for authorization.
+                We will make authorization as bellow in a new file named "tokenVerification" to use it every where.
+                    " const jwt = require('jasonwebtoken');
+                    function verifyToken(req, res, next){
+                        const token = req.header('auth-token');
+                        if(!token) return res.status(400).send("Token not found");
+                        try{
+                            const verify = jwt.verify(token, process.env.TOKEN_SECRET)
+                            next();
+                        }
+                        catch(err)
+                            res.status(400).send("Outdated Token");
+                    }
+                    module.exports = verifyToken; "
+                Now we can use this in any route to which we want to give access as:
+                    "const verifyToken = require('./tokenVerification');
+                    route.get("/profile", verifyToken, (req, res)=> {.....}); "
+
+                Now we will add a new user in the database. We will use the post method. We will use the async and await
+                keywords. We will use the try and catch block. We will use the Joi package for validation. We will use the
+                bcrypt package for hashing the password, in another file named 'userRoute' as:
+                    " const { User, validate } = require('../models/user');
+                    const bcrypt = require('bcrypt');
+                    router.post('/', async (req, res) => {
+                        const { error } = validate(req.body);
+                        if (error) return res.status(400).send(error.details[0].message);
+                        const{ name, email, password } = req.body;
+                        let user = await User.findOne({ email: req.body.email });
+                        if (user) return res.status(400).send('User already registered.');
+                        const salt = await bcrypt.genSalt(10);
+                        const hash = await bcrypt.hash(password, salt);
+                        user = new User({
+                            name,
+                            email,
+                            password: hash
+                        });
+                        try{
+                            await user.save();
+                            res.send(user);
+                        }
+                        catch(ex){
+                            for (field in ex.errors)
+                                console.log(ex.errors[field].message);
+                        }
+                    }); "
+            
+            
+                    When user is registered we will login the user:
+                        " route.post("/login" , async (req, res)=> {
+                        const { password, email } = req.body;
+                        const user = await user.findOne({ email: email});
+                        if(!user) return res.status(400).send('Email not found'); //we should send("Email or Password incorrect!") for security
+                        const match = await bcrypt.compare(password, user.password);
+                        if(!match) return res.status(400).send('Password not matched'); //we should send("Email or Password incorrect!") for security
+
+                        //When user is verified we then generate token / barer using jasonwebtoken.
+                        const token = await jwt.sign({email : user.email}, process.env.TOKEN_SECRET); //save TOKEN_SECRET in .env file
+                        res.header("auth-token", token).send()
+                        res.status(400).send("login successfully!")
+                        }); "
+
+
+                        

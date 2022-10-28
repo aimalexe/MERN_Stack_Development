@@ -13,6 +13,7 @@ React JS:
     It is used to build progressive web applications.
     It is used to build static websites.
     It is used to build dynamic websites.
+    We should organize our react application in a way that it is easy to maintain and easy to scale.
 
 
     DOM:
@@ -32,9 +33,638 @@ React JS:
         2. Client side rendering:
             The process of converting the virtual DOM into the real DOM on the client is called client side rendering.
 
+    Importing/Creating React:
+        There are three ways to import React:
+        1. Manually:
+            Manually we can 
+        2. Using CDN:
+            We can import React using CDN. Eg; 
+            "<script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>"
+        3. Using create:
+            We can import React using create. Eg in terminal write;
+            "npx create-react-app my-app
+            cd my-app
+            npm start"
+
     JSX:
         It is a syntax extension to JavaScript.
         It is used to write HTML in React.
+
+    Components:
+        Component is a function or a class that returns a React element.
+        Components are the building blocks of React. It is used to build reusable UI components.
+        With the help of components we can split the UI into independent and reusable pieces.
+        Components are the heart of React.
+        We can create a component as:
+            1.  "import {Component} from 'react';
+                class App extends Component {
+                }"
+            2.  "import React from 'react';
+                class App extends React.Component {
+                }"
+        Components are of two types:
+            1. Class Components:
+                Class components are the components that are created using ES6 classes.
+                Class components are also called stateful components, smart components, container components.
+                Class components have a render method, state, lifecycle, constructor.
+            2. Functional Components:
+                Functional components are the components that are created using functions.
+                Functional components are also called stateless components, dumb components, presentational components.
+                Functional components do not have a render method, state, lifecycle, constructor.
+
+            render(){}:
+                It is a method of the Component class. It is used to return the jsx code.
+                Every component/class must have a render method, and every render must have a parent element or fragment 
+                to return the jsx code.
+                It syntax is:
+                    "render(){
+                        return(
+                            <div>
+                                <h1>Hello World</h1>
+                            </div>
+                        )
+                    }
+                    export default App;"
+
+        Nested Components:
+            We can create a component inside another component.
+            We can create a component inside another component as:
+                "import React from 'react';
+                import './App.css';
+                import Header from './components/Header';
+                import Footer from './components/Footer';
+                import Main from './components/Main';
+                function App() {
+                    return (
+                        <div className="App">
+                            <Header />
+                            <Main />
+                            <Footer />
+                        </div>
+                    );
+                }
+                export default App;"
+
+    Props:
+        Props are the properties that are passed to the components Or the data which is provided to the components from
+        outside. The data which is present in the component is called state.
+        When we are using props or state or both we must use the constructor.
+        its syntax is:
+            "constructor(props){
+                super(props);
+            }"
+        we can also destruct the props as:
+            "constructor({propsName}){
+                super(propsName);
+            }"
+
+    State:
+        It is the data that is present in the component and is used to change the data in the component. When a state is slightly
+        changed the component is re-rendered. We divide the components in small components so to make changes on state only render that 
+        small part of the parent component. While using states we interact very less with server. States may be simple variables, objects, arrays, clicks, events etc. Usually  we use
+        objects in state. We should also use the constructor when we are using state.
+         It syntax is:
+            "constructor(props){
+                super(props);
+                this.state = {
+                    stateName: 'value'
+                }
+            }"
+        We should not change the state directly because it generates an error. We should use setState() method to change the state.
+        We can change the state as:
+            "this.setState({stateName: 'new value'}, () => {
+                console.log('function to be executed after state is changed');
+            });"
+
+        If there are multiple states we can change the state of one are more. If we write only one state it will change/delete
+        all the other states. So we should write all the states in the setState() method.
+        We can change the state as:
+            "this.setState({
+                stateName1: 'new value1',
+                stateName2: 'previous value2',
+                stateName3: 'this.state.stateName3 + 1'
+            });"
+        We can also change the state using the previous state. We can change the state as:
+            "this.setState((prevState) => {
+                return {
+                    stateName: prevState.stateName + 1
+                }
+            });"
+
+        How to deal with 'this' in normal functions:
+            use this below in constructor of a class:
+                "this.functionName = this.functionName.bind(this)"
+ 
+
+    Conditional Rendering:
+        Conditional rendering is the process of rendering the components based on the condition.
+        We should write the condition in the curly braces.
+        There are three types of conditional rendering:
+            1. If else:
+                We can use if else to render the components based on the condition.
+                It syntax is:
+                    "if(condition){
+                        return(
+                            <div>
+                                <h1>Hello World</h1>
+                            </div>
+                        )
+                    }else{
+                        return(
+                            <div>
+                                <h1>Bye World</h1>
+                            </div>
+                        )
+                    }"
+
+            2. Ternary Operator:
+                We can use ternary operator to render the components based on the condition.
+                It syntax is:
+                    "condition ? (
+                        <div>
+                            <h1>Hello World</h1>
+                        </div>
+                    ) : (
+                        <div>
+                            <h1>Bye World</h1>
+                        </div>
+                    )"
+
+            3. Short Circuit Operator/Logical && Operator:
+                We can use short circuit operator to render the components based on the condition.
+                it returns the second element if the first element is true, while it doesn't return
+                the second element if the first element is false.
+                It syntax is:
+                    "condition && (
+                        <div>
+                            <h1>Hello World</h1>
+                        </div>
+                    )"
+
+
+    Lifecycle Methods:
+        These are the methods which are called automatically like constructor and destructor method.
+        These are of three types which are currently in use while the other four are deprecated: 
+            1. componentDidMount():
+                mount mean 'charna'. This is called when website is loaded but after constructor. This is called once.
+
+            2. componentDidUpdate():
+                This is called when a state is changed. This is called repeatedly.
+
+            3. componentWillUnmount():
+                This is called when component is destroyed.
+
+        What are its uses:
+            - when we do APIs calls, we use componentDidMount(). So that data is loaded when the page is refreshed or loaded.
+            - 
+
+    Events Handling:
+        'e' or 'event' object have many information, among them it also know from where it is clicked; it may be a location
+        or a function call from two different buttons. This e is by default send with Forms. Also remember if a button in a form 
+        is clicked by default html refreshes the whole page, we should avoid this default behavior by using "e.preventDefault()"
         
+        syntax:
+        Instead of writing this:
+            "<button onClick = {this.handleFunctionName}>click 1 </button>"
+        we must write this:
+            "<button onClick = {(e) => this.handleFunctionName(e)}>click 1 </button>"
+        We write 'handle' because it is a convention. Also 'e' or 'event' is written in anonymous function.
+
+
+    
+
+    Centralize State:
+        A centralize state is a state which is present in one place and is used by all the components. This is done to avoid
+        passing the props from one component to another component. This is done by using redux. We must write the state in the
+        constructor of the parent component and pass it to the child component using props. So that we can change the state using 
+        the child component.
+
+    Redux:
+        Redux is a state management tool. It is used to manage the state of the application. When we pass a data from parent to child 
+        it would be a one-way traffic. The child can change the state of the parent but the parent can't change the state of the child.
+        We should't use redux for small applications because of unnecessary complexity. We should use redux for large applications.
+
+
+    FUNCTIONAL Components:
+        which is better to use?
+            - Functional components are better to use because they are easy to read, write, understand, debug and test.
+            - Functional components are faster in performance than class components.
+            - Class components are better to use when we need to use lifecycle methods.
+            - Class components there is lot of problems like 'this' keyword, binding, setStates, arrow functions etc.
+                *We should prefer functional components over class components but can also use both in a project.
+            
+        Syntax of functional components:
+            "const componentName = (props) => {
+                return(
+                    <div>
+                        <h1>Hello World</h1>
+                    </div>
+                )
+            }"
+
+        Props in functional components:
+            We can use props in functional components without using 'this' keyword. Simply we send props but we receive the destructured
+            props. We can use props in functional components as:
+                "const componentName = ({propsName1, propsName2}) => {
+                    return(
+                        <div>
+                            <h1>Hello World {propsName1}</h1>
+                        </div>
+                    )
+                }"
+
+        Hooks:
+            When we want to use state we must have to use hooks. Hooks are the functions which are used to use state in functional components.
+            There are almost 15 official hooks in react, but lot of third party hooks are also available.
+            Almost all the hooks are start with 'use' keyword. When we are about to use hooks we should import them in braces because they are named
+            exports. We should also export our hooks as named exports, so if one can import it he could rename it. We cannot rename default exports.
+            We can use hooks as:
+                "import {useHook'sName} from 'react';"
+            to rename it we use 'as' keyword as:
+                "import {useHook'sName' as 'newName'} from 'react';"
+            
+            Following are some hooks:-
+                -1. useState():
+                    This is used to use state in functional components. It is same as 'this.state.--' and 'this.setState(--)' of class components.
+                    It returns an array of two elements. The first element is the state and the second element is the function which is used to 
+                    change the state. We can use it as:
+                        "const [stateName, setStateName] = useState('initial value');"
+                    We can also use it as:
+                        "const [stateName, setStateName] = useState(() => {
+                            return 'initial value';
+                        });"
+
+                -2. useEffect():
+                    This is used to use lifecycle methods in functional components. It is same as 'componentDidMount' , 'componentDidUpdate' and 'componentWillUnmount'
+                    of class components. When component is loaded the first function to be called is useEffect().
+                    It takes two arguments, the first argument is the function which is called when the component is mounted and the second argument is the
+                    array of dependencies. If the array is empty then the function is called only once when the component is mounted. If the array is not
+                    empty then the function is called when the component is mounted and when the state is changed. The inner function cannot be 'async', to deal
+                    with asynchronous we should make another function inside the callback function. We must also write dependency array of states that we modified 
+                    in the function to git rid of infinite running of useEffect(). this hook can make problems when the state is not a simple variable or object but is an
+                    array may be one or many dimensional. We can use it as:
+                        "useEffect( () => {
+                            console.log('Hello World');
+                        }, [stateName]);"
+
+                -3. useParams():
+                    This is used to get the parameters from the url. It returns an object of parameters. We can use it as:
+                        "import {useParams} from 'react-router-dom';
+                        const {parameterName} = useParams();"
+
+                -4. useNavigate():
+                    This is used to navigate to another page. We can use it as:
+                        "import {useNavigate} from 'react-router-dom';
+                        const navigate = useNavigate();
+                        <button onClick = {() => navigate('/newPage')}>Change Route</button>
+                            //this will navigate to '/newPage' when the button is clicked. To go back we can use 'navigate(-1)'"
+
+                -5. useSearchParams():
+                    This is used to get the parameters from the url. It returns an array of parameters. We can use it as:
+                        "import {useSearchParams} from 'react-router-dom';
+                        const [searchParams, setSearchParams] = useSearchParams();
+                        console.log(Object.fromEntries([...searchParams])); //get search parameters easily. It is generic solution
+                        { searchParams.get('parameterName') } //get a particular/specific parameter"
+
+                -6. useFormik():
+                        This is used to create forms. It returns an object of formik. We can use it as:
+                            "import {useFormik} from 'formik';
+                            const formik = useFormik({
+                                initialValues: {
+                                    name: '',
+                                    email: '',
+                                    password: '',
+                                },
+                                onSubmit: (values) => {
+                                    console.log(values);
+                                },
+                            });"
+                        Explore more in topic bellow.
+
+                -7. useRef():
+                        The value of the reference is persisted (stays the same) between component re-renderings;
+                        Updating a reference doesn't trigger a component re-rendering.
+                        Difference with State :
+                            - Updating a reference doesn't trigger re-rendering, while updating the state makes the component re-render;
+                            - The reference update is synchronous (the updated reference value is available right away), while the state update is
+                            asynchronous (the state variable is updated after re-rendering).
+                        We can use it as:
+                            "import {useRef} from 'react';
+                            const reference = useRef(initialValue);
+                            const value = reference.current;    //to get the value of the reference (getter)
+                            reference.current = newValue;   //to set the value of the reference (setter)"
+
+                        The following example renders only once and value changes many times without re-rendering:
+                            import { useRef } from 'react';
+
+                            const Ref = () => {
+                                const countRef = useRef(0);
+                                const handle = () => {
+                                    countRef.current++; 
+                                    console.log(`Clicked ${countRef.current} times`);
+                                };
+                                console.log('I rendered!');     // renders only once
+                                return <button onClick={handle}>Click me</button>;
+                            }
+                            export default Ref;
+                        Stop watch example:
+                            "import { useRef, useState, useEffect } from 'react';
+                            export default function Ref() {
+                                const timerIdRef = useRef(0);
+                                const [count, setCount] = useState(0);
+                                const startHandler = () => {
+                                    if (timerIdRef.current) { return; }
+                                    timerIdRef.current = setInterval(() => setCount(c => c + 1), 1000);
+                                };
+                                const stopHandler = () => {
+                                    clearInterval(timerIdRef.current);
+                                    timerIdRef.current = 0;
+                                };
+                                useEffect(() => {
+                                    return () => clearInterval(timerIdRef.current);
+                                }, []);
+                                return (
+                                    <div>
+                                        <div>Timer: {count}s</div>
+                                        <div>
+                                            <button onClick={startHandler}>Start</button>
+                                            <button onClick={stopHandler}>Stop</button>
+                                        </div>
+                                    </div>
+                                );
+                            }"
+
+                        useRef to access Dom Elements:
+                            "import { useRef, useEffect } from 'react';
+                            export default function Ref() {
+                                const elementRef = useRef();
+                                useEffect(() => {
+                                    const divElement = elementRef.current;
+                                    console.log(divElement); // logs <div>I'm an element</div>
+                                }, []);
+                                return (
+                                    <div ref={elementRef}>
+                                        I'm an element
+                                    </div>
+                                );
+                            }"
+
+                        useRef to interact Dom:
+                            "import { useRef, useEffect } from 'react';
+                            export default function Ref() {
+                                const inputRef = useRef();
+                                useEffect(() => {
+                                    // Logs `HTMLInputElement` 
+                                    console.log(inputRef.current);
+                                    inputRef.current.focus();
+                                }, []);
+                                // Logs `undefined` during initial rendering
+                                console.log(inputRef.current);
+                                return <input ref={inputRef} type="text" />;
+                            }"
+
+
+
+    How to use CSS frameworks in react?
+        -1. Bootstrap:
+                We can use Bootstrap in react by two methods"
+                    - CDN
+                        We can use Bootstrap by using CDN. We can use it by adding the following line in the index.html file:
+                            "<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+                            integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous'>"
+                        We can also use it by adding the following line in the index.js file:
+                            "import 'bootstrap/dist/css/bootstrap.min.css';"
+
+                    - NPM
+                        We can use Bootstrap by using NPM. We can use it by adding the following line in the terminal:
+                            "npm install react-bootstrap bootstrap --save"
+                        We can then use it by adding the following line in the index.js file:
+                            "import 'bootstrap/dist/css/bootstrap.min.css';"
+                        and also include script in index.html file as:
+                            "<script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+                            <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+                            <script src="https://unpkg.com/react-router/umd/react-router.min.js" crossorigin></script>
+                            <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js" crossorigin></script>
+                            <script src="https://unpkg.com/react-bootstrap/dist/react-bootstrap.min.js" crossorigin></script>"
+                        We can at last use it by adding the following line in the another project file:
+                            "import {Button} from 'react-bootstrap';"
+                            "<Button variant='primary'>Primary</Button>"
+
+        -2. Semantic UI:
+                We can use Semantic UI in react by two methods:
+                    - CDN
+                    - NPM
+                        "npm i semantic-ui-react semantic-ui-css --save"
+                        Then paste this in project entry point (index.js):
+                            "import 'semantic-ui-css/semantic.min.css';" 
+                        Then we can use it in our another project file as:
+                            "import {Button} from 'semantic-ui-react';"
+                            "<Button>Click Me</Button>"
+                Semantic UI is ideal for small projects. It is not ideal for large projects because it is not customizable.
+        
+        -3. Material UI:
+                It is used by amazon, facebook, netflix, nasa, spotify, unity etc. It is very customizable. Its used is preferred for
+                large projects. We can use Material UI in react by two methods:
+                    - CDN
+                        not recommended :(
+                    - NPM
+                        "npm install @mui/material @emotion/react @emotion/styled"
+                    If we want self theming we should't install @emotion/styled.
+                    If want i-cons also install:
+                        "npm install @mui/icons-material"
+                To use Fonts we should add the following line in index.html file:
+                    "<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' />"
+                        Then we can use it in our another project file as:
+                            "import Button from '@material-ui/core/Button';"
+                            "<Button variant='contained' color='primary'>Hello World</Button>"
+    
+    Routers:
+        Route mean way. Router mean the paths in our website. The base path is know as slash '/'. For Example my website name is
+        'abc.com' so my route will be '.../'. Router has its own jargon. By default react doesn't support any routers so we have to install 
+        ' '. Routing have two types: 
+            -1. Server side routing:
+                    This is the default routing. In this routing the server sends the whole page to the client. The client then renders the page.
+            -2. Client side routing:
+                    This is the new routing. In this routing the client have only the html file and then it renders the page.
+                    Client side routing is not a real phenomenon.
+
+        To make routes first of all install:
+            "npm i  react-router-dom"
+        Then import the following:
+            "import { BrowserRoutes as Router, Routes, Route, Link } from 'react-router-dom';"
+        Then we can use it as:
+            "<Router>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/contact' element={<Contact />} />
+                    <Route path='/user' element={<User />}>
+                        <Route path='/' element={<UserHome />} />
+                        <Route path=':id' element={<UserDetail />} />
+                    </Route>
+                    <Route path='*' element={<Error />} />     // This is for 404 error page. it should be at last.
+                </Routes>
+            </Router>"
+        
+        We should use 'exact' attribute in the Route tag if we want to make the route exact. For example:
+            "<Route path='/' exact element={<Home />} />"
+        Outside the Routes tag and inside the Routes, will be displayed with every component. So it is better to write nav and footer
+        above and bellow the routes respectively. we can use the following:
+            - Link:
+                This is used to make links. We must use 'Link' instead of 'a' tag to prevent default refresh of whole page.
+                We can use it as:
+                    "<Link to='/' element={ <Home /> }>Home</Link>"
+        
+        Lazy Loading:
+            Lazy loading is used to load the component only when it is needed. For example:
+                "const Home = lazy(() => import('./Home'));"
+                "const About = lazy(() => import('./About'));"
+                "const Contact = lazy(() => import('./Contact'));"
+                "const User = lazy(() => import('./User'));"
+                "const UserHome = lazy(() => import('./UserHome'));"
+                "const UserDetail = lazy(() => import('./UserDetail'));"
+                "const Error = lazy(() => import('./Error'));"
+            Then we can use it as:
+                "<Router>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/contact' element={<Contact />} />
+                        <Route path='/user' element={<User />}>
+                            <Route path='/' element={<UserHome />} />
+                            <Route path=':id' element={<UserDetail />} />
+                        </Route>
+                        <Route path='*' element={<Error />} />     // This is for 404 error page. it should be at last.
+                    </Routes>
+                </Router>"
+            We can also use suspense to show a loading message while the component is loading. For example:
+                "<Suspense fallback={<div>Loading...</div>}>
+                    <Router>
+                        <Routes>
+                            <Route path='/' element={<Home />} />
+                            <Route path='/about' element={<About />} />
+                            <Route path='/contact' element={<Contact />} />
+                            <Route path='/user' element={<User />}>
+                                <Route path='/' element={<UserHome />} />
+                                <Route path=':id' element={<UserDetail />} />
+                            </Route>
+                            <Route path='*' element={<Error />} />     // This is for 404 error page. it should be at last.
+                        </Routes>
+                    </Router>
+                </Suspense>"
+            We can also use lazy loading for images. For example:
+                "const image = import('./image.jpg');"
+                "const Image = () => {
+                    return <img src={image} alt='image' />
+                }"
+            We can also use lazy loading for fonts. For example:
+                "const font = import('./font.ttf');"
+                "const Font = () => {
+                    return <p style={{fontFamily: font}}>Hello World</p>
+                }"
+
+    Formik form handling:
+        Building react forms without tears: https://formik.org/docs/overview. Keep in mind to connect a label and input field we should use
+        'htmlFor' instead of for because in js file it will be considered as for loop, and 'id' attributes. For example:
+            "<label for='name'>Name</label>
+            <input type='text' id='name' />"
+        First of all install formik.
+            "npm i formik" 
+        and for validation install yup.
+            "npm i yup"
+        Then import the following:
+            "import { useFormik, Formik, Form, Field, ErrorMessage } from 'formik';"
+            "import * as Yup from 'yup';"
+        Then we can use it as:
+            "const formik = useFormik({ //pass an object.
+                initialValues: {    //initial values of the form.
+                    name: '',
+                    email: '',
+                },
+                onSubmit: values => {   //function to be called when the form is submitted.
+                    alert(JSON.stringify(values, null, 2));
+                },
+                validationSchema: Yup.object({   //validation schema.
+                    name: Yup.string()
+                        .max(15, 'Must be 15 characters or less')
+                        .required('Required'),
+                    email: Yup.string().email('Invalid email address').required('Required'),
+                }),
+            });
+
+            <form onSubmit={formik.handleSubmit}>
+                <label htmlFor='name'>Name</label>
+                <input
+                    id='name'
+                    name='name'
+                    type='text'
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                    onBlur={formik.handleBlur}
+                />
+                {formik.touched.name && formik.errors.name ? formik.errors.name : null } //To show the error message for name if any when blurred
+                <label htmlFor='email'>Email</label>
+                <input
+                    id='email'
+                    name='email'
+                    type='email'
+                    onChange={formik.handleChange}
+                    value={formik.values.email}
+                    onBlur={formik.handleBlur}
+                />
+                { formik.touched.email && formik.errors.email ? formik.errors.email : null } //To show the error message for email if any when blurred.
+                <button type='submit'>Submit</button>
+            </form>"
+        We should use 'name' attribute in formik because it is used to identify the field else it will generate an error.
+        Validation Schema:
+            Is used to validate the form. Schema mean structure. We can use the following:
+                - string()
+                - number()
+                - boolean()
+                - date()
+                - array()
+                - object()
+                - mixed()
+            We can use the following methods on the above:
+                - required()
+                - min()
+                - max()
+                - email()
+                - url()
+                - oneOf()
+                - matches()
+                - test()
+                - notOneOf()
+                - notTypeOf()
+                - nullable()
+                - defined()
+                - default()
+                - transform()
+                - when()
+                - label()
+                - meta()
+                - concat()
+                - typeError()
+                - strip()
+                - validate()
+                - validateAt()
+                - isValid()
+                - cast()
+                - isType()
+                - isSchema()
+                - isRef()
+                - clone()
+                - describe()
+
+    Testing:
+        There are two types of servers:
+            - Development server: It is used to run the application in development mode. It is used to run the application in the browser.
+            - Production server: It is used to run the application in production mode. It is used to run the application in the browser.
+        There are two types of testing:
+            - Unit testing: It is used to test the individual components. It is used to test the individual components.
+            - Integration testing: It is used to test the whole application. It is used to test the whole application.
+        Mostly testing is done when the application is in development mode.
 
         
+
+    
