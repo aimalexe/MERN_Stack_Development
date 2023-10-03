@@ -1,0 +1,1141 @@
+Testing:
+    Testing is a process of executing a program with the intent of finding errors. Testing is done to show
+    that the required features work correctly and the existing features do not break when new code is added. 
+    
+    Manual Testing:
+    Manual testing is a process of testing a software application manually. It is a process of executing a
+    program with the intent of finding errors. Manual testing is done to show that the required features work
+    correctly and the existing features do not break when new code is added. Manual testing is done by a
+    person who is not involved in the development of the software.
+
+    Automated Testing:
+        Automated testing is a process of executing a program with the intent of finding errors. Automated
+        testing is the process of writing code to test other code, and then run those codes to test the
+        functionality of the application. 
+        Automated testing has some advantages over manual testing. It is faster, more accurate, reusable
+        and more reliable. It is also less expensive than manual testing. It is done frequently and in
+        less time. We can catch the bugs before deployment. Refactoring (means changing the structure of
+        your code without changing the behavior) your code with confidence.
+
+        Automated testing has three types:
+            1. Unit Testing:
+                Tests a unit of an application without its external dependencies. A unit is the smallest testable part of any
+                software. It usually has one or a few inputs and usually a single output. It is written and
+                maintained by the developer who wrote the unit. It is used to validate that a section of an
+                application performs as designed. these are cheap to write and fast to run. But it dose not
+                give the confidence that the application is working as a whole. We should test complex logic
+                and computation in unit testing.
+            2. Integration Testing:
+                Tests the application with its external dependencies. Take longer to execute but give confidence 
+                that the application is working as a whole.
+            3. End-to-End Testing:
+                Drives the application as a whole through its UI. It is the most expensive type of testing. It is done by
+                the end user. It is done to check whether the application is working as expected.It give the most
+                confidence that the application is working as a whole but it ran very slow and are very brittle.
+
+    Test Pyramid:
+        What kind of test should we write? the answer is "All of them". But most of our tests should be
+        unit tests. a bunch of Integration tests and a few end-to-end tests. This is called the test
+        pyramid. The more tests we have, the more confidence we have that our application is working as
+        expected, the more bugs we catch before deployment. But the actual ratio depends on the application
+        we are building. If we are building a simple application, we can have more end-to-end tests. If we
+        are building a complex application, we can have more unit tests. The test pyramid is a guideline
+        not a rule. 
+
+    Tooling:
+        To write test we should have a testing framework, which give us libraries and tools to write tests,
+        and a test runner, which runs our tests. There are many testing frameworks and test runners. The most
+        popular are:
+        - Jest:
+            Jest is a testing framework by Facebook. It is used to test React applications. It is fast,
+            easy to use and has a great documentation. It has a great community and a lot of plugins.
+        - Mocha:
+            It is a testing framework that runs on Node.js and in the browser. It is a feature-rich JavaScript
+            test framework running on Node.js and in the browser, making asynchronous testing simple and fun.
+            Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught
+            exceptions to the correct test cases.
+        - Jasmine:
+            It is a behavior-driven development framework for testing JavaScript code. It does not depend on
+            any other JavaScript frameworks. It does not require a DOM. It has a clean, obvious syntax so
+            that you can easily write tests. It can be run in any JavaScript environment. It has full
+            support for both asynchronous and synchronous testing. It has a rich set of assertions. It
+            has a powerful mocking system. It has a simple and flexible API. It has a comprehensive
+            documentation. It has a large community of users. It is easy to learn and use. It is
+            extensible. It is open source.
+        - Cypress:
+            It is a JavaScript end-to-end testing framework. It is fast, easy to use and has a great
+            documentation. It has a great community and a lot of plugins. It is used to test React
+            applications. It is used to test Angular applications. It is used to test Vue applications.
+        
+        Using Jest:
+            We are going to use Jest to write our tests. Jest is a testing framework by Facebook. It is
+            used to test React applications. It is fast, easy to use and has a great documentation.
+            Installing jest:
+                "npm install jest --save-dev"
+            Running jest:
+                In package.json file add a script:
+                    "scripts": {
+                        "test": "jest"
+                    }
+                Then run "npm run test" to run jest.
+            Continually running jest:
+                In package.json file add a script:
+                    "scripts": {
+                        "test": "jest --watchAll"
+                    }
+                Then run "npm run test" to run jest.
+
+            Writing tests:
+                Any file with the .test.js or .spec.js extension will be recognized as a test file by
+                Jest. We can create a test file in the __tests__ folder. We can create a test file next
+                to the file we are testing. We can create a test file anywhere in our project.
+                The naming convention is to name the test file the same name as the file we are testing
+                with the .test.js or .spec.js extension. For example, if we are testing a file called
+                utils.js, we can name the test file utils.test.js or utils.spec.js.
+                It syntax is:
+                    "test('description', () => {
+                        // test code
+                    });"
+                    In test function we have two parameters. The first parameter is the description of
+                    the test. The second parameter is a function that contains the test code.
+
+            Using matchers:
+                Matchers are functions that let you test values in different ways. There are many
+                matchers. We can use them to test different things. For example, we can use them to test
+                if a value is equal to another value, if a value is greater than another value, if a value
+                is less than another value, if a value is null, if a value is undefined, if a value is
+                true, if a value is false, if a value is an array, if a value is an object, if a value is
+                a string, if a value is a number, if a value is a function, if a value is a promise, if a
+                value is a symbol, if a value is a class, if a value is an instance of a class etc.
+                Some of them are:
+                    - toBe:
+                        "expect(value).toBe(value);"
+                        It is used to test if a value is equal to another value.
+                    - toEqual:
+                        "expect(value).toEqual(value);"
+                        It is used to test if a value is equal to another value. It is used to test
+                        objects and arrays.
+                    - toBeGreaterThan:
+                        "expect(value).toBeGreaterThan(value);"
+                        It is used to test if a value is greater than another value.
+                    - toBeGreaterThanOrEqual:
+                        "expect(value).toBeGreaterThanOrEqual(value);"
+                        It is used to test if a value is greater than or equal to another value.
+                    - toBeLessThan:
+                        "expect(value).toBeLessThan(value);"
+                        It is used to test if a value is less than another value.
+                    - toBeLessThanOrEqual:
+                        "expect(value).toBeLessThanOrEqual(value);"
+                        It is used to test if a value is less than or equal to another value.
+                    - toBeNull:
+                        "expect(value).toBeNull();"
+                        It is used to test if a value is null.
+                    - toBeUndefined:
+                        "expect(value).toBeUndefined();"
+                        It is used to test if a value is undefined.
+                    - toBeDefined:
+                        "expect(value).toBeDefined();"
+                        It is used to test if a value is defined.
+                    - toBeTruthy:
+                        "expect(value).toBeTruthy();"
+                        It is used to test if a value is true.
+                    - toBeFalsy:
+                        "expect(value).toBeFalsy();"
+                        It is used to test if a value is false.
+                    - toBeNaN:
+                        "expect(value).toBeNaN();"
+                        It is used to test if a value is NaN.
+                    - toBeInstanceOf:
+                        "expect(value).toBeInstanceOf(value);"
+                        It is used to test if a value is an instance of a class.
+                    - toContain:
+                        "expect(value).toContain(value);"
+                        It is used to test if an array contains a value.
+                    - toHaveLength:
+                        "expect(value).toHaveLength(value);"
+                        It is used to test if an array has a length.
+                    - toMatch:
+                        "expect(value).toMatch(value);"
+                        It is used to test if a string matches a regular expression.
+                    - toThrow:
+                        "expect(value).toThrow(value);"
+                        It is used to test if a function throws an error.
+                    - toThrowError:
+                        "expect(value).toThrowError(value);"
+                        It is used to test if a function throws an error.
+                    - toHaveBeenCalled:
+                        "expect(value).toHaveBeenCalled();"
+                        It is used to test if a function has been called.
+                    - toHaveProperty:
+                        "expect(value).toHaveProperty(value);"
+                        It is used to test if an object has a property.
+                    - toMatchObject:
+                        "expect(value).toMatchObject(value);"
+                        It is used to test if an object matches another object.
+                    - toHaveBeenCalled:
+                        "expect(value).toHaveBeenCalled();"
+                        It is used to test if a function has been called.
+                    - toHaveBeenCalledWith:
+                        "expect(value).toHaveBeenCalledWith(value);"
+                        It is used to test if a function has been called with specific arguments.
+                    -toHaveBeenCalledTimes:
+                        "expect(value).toHaveBeenCalledTimes(value);"
+                        It is used to test if a function has been called a specific number of times.
+                    - toHaveBeenLastCalledWith:
+                        "expect(value).toHaveBeenLastCalledWith(value);"
+                        It is used to test if a function has been called with specific arguments the last
+                        time it was called.
+                    
+                    
+
+                We can write a test to test an absolute function as:
+                    "const absolute = require('./absolute');
+                    test('absolute - should return a positive number if input is positive', () => {
+                        const result = absolute(1);
+                        expect(result).toBe(1);
+                    });
+                    test('absolute - should return a positive number if input is negative', () => {
+                        const result = absolute(-1);
+                        expect(result).toBe(1);
+                    });
+                    test('absolute - should return 0 if input is 0', () => {
+                        const result = absolute(0);
+                        expect(result).toBe(0);
+                    });"
+            
+            Grouping Tests:
+               We can group tests to make our tests more organized. Test are first class citizens in
+               our source code and are as important as any other code. 
+               We can group tests using "describe" function. This is used to group tests in both Jest
+               and Jasmine. It has two parameters. The first parameter is the description of the group.
+                The second parameter is a function that contains the tests. replace "test" with "it".
+                It syntax is:
+                      "describe('description', () => {
+                            // tests
+                      });"
+                 We can write a test to test an absolute function as:
+                    "const absolute = require('./absolute');
+                    describe('absolute', () => {
+                        it('should return a positive number if input is positive', () => {
+                            const result = absolute(1);
+                            expect(result).toBe(1);
+                        });
+                        it('should return a positive number if input is negative', () => {
+                            const result = absolute(-1);
+                            expect(result).toBe(1);
+                        });
+                        it('should return 0 if input is 0', () => {
+                            const result = absolute(0);
+                            expect(result).toBe(0);
+                        });
+                    });"
+
+            Testing Strings:
+                We can test string using matchers like toContain, toMatch, length etc. We should test
+                strings in a way that is not too specific and not too general. For example, if we are
+                testing a function that returns a string "Welcome to my website", we should test it as:
+                    "expect(result).toMatch(/my website/);"
+                 or
+                    "expect(result).toContain('my website');"
+
+            Testing Arrays:
+                We can test arrays using matchers like toContain, toHaveLength, length etc. We should
+                test arrays in a way that is not too specific and not too general. For example, if we
+                are testing a function that returns an array [1, 2, 3], we should test it as:
+                    "expect(result).toContain(1);"
+                 or
+                    "expect(result).toHaveLength(3);"
+                 or 
+                    "expect(result).toEqual(expect.arrayContaining([1, 2, 3]));"
+                    //This is preferred way to test arrays.
+
+            Testing Objects:
+                We can test objects using matchers like toEqual, toHaveProperty, toMatchObject etc. We should test
+                objects in a way that is not too specific (using toEqual) and not too general. For example, if we are
+                testing a function that returns an object {id: 1}, we should test it as:
+                    "expect(result).toHaveProperty('id', 1);"
+                 or
+                    "expect(result).toMatchObject({id: 1});"
+
+            Testing Exceptions:
+                We can test exceptions using toThrow and toThrowError. We should test exceptions in a way that is not
+                too specific and not too general. For example, if we are testing a function that throws an exception
+                "Invalid input", we should test it as:
+                    "expect(() => {absolute('a')}).toThrow();"
+                 or
+                    "expect(() => {absolute('a')}).toThrow('Invalid input');"
+                 or
+                    "expect(() => {absolute('a')}).toThrow(Error);"
+                 or
+                    "expect(() => {absolute('a')}).toThrow(Error('Invalid input'));"
+                We can write a test for registering a user with invalid username and valid username as:
+                    "describe('register', () => {
+                        it('should throw if username is falsy', () => {
+                            const args = [null, undefined, NaN, '', 0, false];
+                            args.forEach(a => {
+                                expect(() => {register(a)}).toThrow();
+                            });
+                        });
+                        it('should return a user object if valid username is passed', () => {
+                            const result = register('Aimal');
+                            expect(result).toMatchObject({username: 'Aimal'});
+                            expect(result.id).toBeGreaterThan(0);
+                        });
+                    });"
+
+            
+            Simple Mock Functions:
+                As in unit testing, we should test our functions in isolation. We should not test our functions
+                that depend on other functions. We should test our functions that depend on other functions by
+                mocking(faking) the functions that they depend on. We can mock a function using jest.fn(). We can write
+                a test for a function that depends on a function that returns a random number as:
+                    "describe('applyDiscount', () => {
+                        it('should apply 10% discount if customer has more than 10 points', () => {
+                            db.getCustomerSync = function(customerId) {
+                                console.log('Fake reading customer...');
+                                return { id: customerId, points: 20 };
+                            }
+                            const order = { customerId: 1, totalPrice: 10 };
+                            applyDiscount(order);
+                            expect(order.totalPrice).toBe(9);
+                        });
+                    });"
+                In jest we can mock a function using jest.fn(). We can write a test for a function that depends on a function
+                that returns a random number. We have some methods for this jest.fn(), some are:
+                    - jest.fn().mockReturnValue()
+                        Used to mock a function that returns a value.
+                    - jest.fn().mockResolvedValue()
+                        Used to mock a function that returns a promise that resolves to a value.
+                    - jest.fn().mockRejectedValue()
+                        Used to mock a function that returns a promise that rejects to a value.
+                    - jest.fn().mockImplementation()
+                        Used to mock a function that returns a value or a promise that resolves or rejects to a value.
+                   
+
+                We can write the same above test using jest.fn() as:
+                    "describe('applyDiscount', () => {
+                        it('should apply 10% discount if customer has more than 10 points', () => {
+                            db.getCustomerSync = jest.fn().mockReturnValue({ id: 1, points: 10 });
+                            const order = { customerId: 1, totalPrice: 10 };
+                            applyDiscount(order);
+                            expect(order.totalPrice).toBe(9);
+                        });
+                    });"
+
+            Interaction Testing:
+                We can test the interaction between two functions using jest.fn(). We can write a test for a function
+                that depends on a function that returns a random number as:
+                    "describe('notifyCustomer', () => {
+                        it('should send an email to the customer', () => {
+                            db.getCustomerSync = function(customerId) {
+                                return { email: 'a' };
+                            }
+                            let mailSent = false;
+                            mail.send = function(email, message) {
+                                console.log('Sending email...');
+                                mailSent = true;
+                            }
+                            notifyCustomer({ customerId: 1 });
+                            expect(mail.send).toBe(true);
+                        });
+                    });"
+                We can write the same test using jest.fn() as:
+                    "describe('notifyCustomer', () => {
+                        it('should send an email to the customer', () => {
+                            db.getCustomerSync = jest.fn().mockReturnValue({ email: 'a' });
+                            mail.send = jest.fn();
+                            notifyCustomer({ customerId: 1 });
+                            expect(mail.send).toHaveBeenCalled();
+                            // expect(mail.send).toHaveBeenCalledWith('a', '...');
+                            expect(mail.send.mock.calls[0][0]).toBe('a');
+                            expect(mail.send.mock.calls[0][1]).toMatch(/order/);
+                        });
+                    });"
+
+        2. Integration Testing:
+            We can't check a full application with unit testing. We need to test the application as a whole because
+            the application is made up of many modules. We can test the application as a whole using integration
+            testing.
+
+            Setting Up test database:
+                We need to set up a test database for integration testing because we don't want to mess up our
+                production database. Naming convention for test database is <database name>_test. We can use config
+                module to set up a test database. We can write a test database setup as:
+                    "const config = require('config');
+                    const mongoose = require('mongoose');
+                    module.exports = function() {
+                        const db = config.get('db');
+                        mongoose.connect(db)
+                            .then(() => console.log(`Connected to ${db}...`));
+                    }"
+                To connect to a specific database in atlas we can modify the connection string, only add name
+                of database before ? and after /  as ...mongodb.net/appName_test?ret....:
+                    "mongodb+srv://aimalexe:<password>@learningcluster.ikmhi23.mongodb.net/bookly_test?retryWrites=true&w=majority"
+                We can use this test database setup in our integration tests.
+                But remember to set NODE_ENV to test before running the tests as:
+                    "set NODE_ENV=test"
+                We can set NODE_ENV to test in package.json as:
+                    "scripts": {
+                        "test": "set NODE_ENV=test && jest --watchAll"
+                    },"
+                Back to development environment we can set NODE_ENV to development in package.json as:
+                    "scripts": {
+                        "test": "set NODE_ENV=test && jest --watchAll",
+                        "start": "set NODE_ENV=development && nodemon index.js"
+                    },"
+
+            A Simple Integration test:
+                First we should install "supertest", a package that allows us to test HTTP requests. module as:
+                    "npm i supertest --save-dev"
+                Now in a file we require supertest and express. We can write a simple integration test as:
+                    "const request = require('supertest');
+                    const { Genre } = require('../../models/genre');
+                    let server;
+                    describe('/api/genres', () => {
+                            // We should start the server before each test.
+                        beforeEach(() => { server = require('../../index'); });
+                            // We should close the server after each test.
+                        afterEach(async () => {
+                            server.close();
+                            await Genre.remove({});
+                        });
+                            //We should write describe for each end point like get, post, put, delete.
+                        describe('GET /', () => {
+                            it('should return all genres', async () => {
+                                await Genre.collection.insertMany([
+                                    { name: 'genre1' },
+                                    { name: 'genre2' }
+                                ]);
+                                const res = await request(server).get('/api/genres');
+                                expect(res.status).toBe(200);
+                                expect(res.body.length).toBe(2);
+                                expect(res.body.some(g => g.name === 'genre1')).toBeTruthy();
+                                expect(res.body.some(g => g.name === 'genre2')).toBeTruthy();
+                            });
+                        });
+                    });"
+
+            Testing The Object IDs:
+                We can test the object IDs using integration testing. We can write a test for object IDs as:
+                    "describe('GET /:id', () => {
+                        it('should return a genre if valid id is passed', async () => {
+                            const genre = new Genre({ name: 'genre1' });
+                            await genre.save();
+                            const res = await request(server).get('/api/genres/' + genre._id);
+                            expect(res.status).toBe(200);
+                            expect(res.body).toHaveProperty('name', genre.name);
+                        });
+                        it('should return 404 if invalid id is passed', async () => {
+                            const res = await request(server).get('/api/genres/1');
+                            expect(res.status).toBe(404);
+                        });
+                        it('should return 404 if no genre with the given id exists', async () => {
+                            const id = mongoose.Types.ObjectId();
+                            const res = await request(server).get('/api/genres/' + id);
+                            expect(res.status).toBe(404);
+                        });
+                    });"
+
+            Testing the Authorization:
+                We can test the authorization using integration testing. We can write a test for authorization as:
+                    "describe('POST /', () => {
+                        it('should return 401 if client is not logged in', async () => {
+                            const res = await request(server)
+                                .post('/api/genres/')
+                                .send({ name: 'genre1' });
+                            expect(res.status).toBe(401);
+                        });
+                    });"
+
+            Testing The Input:
+                We can test the input using integration testing. We can write a test for input as:
+                    "describe('POST /'), ()=>{
+                        it('should return 400 if genre is less than 5 characters', async () => {
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .post('/api/genres')
+                                .set('x-auth-token', token) //set is used to set a header.
+                                .send({ name: '1234' });
+                            expect(res.status).toBe(400);
+                        });
+                        it('should return 400 if genre is more than 50 characters', async () => {
+                            const token = new User().generateAuthToken();
+                            const name = new Array(52).join('a'); //create a string with 51(52-1) a's.
+                            const res = await request(server)
+                                .post('/api/genres')
+                                .set('x-auth-token', token)
+                                .send({ name: name });
+                            expect(res.status).toBe(400);
+                        });
+                        it('should save the genre if it is valid', async () => {
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .post('/api/genres')
+                                .set('x-auth-token', token)
+                                .send({ name: 'genre1' });
+                            const genre = await Genre.find({ name: 'genre1' });
+                            expect(genre).not.toBeNull();
+                        });
+                        it('should return the genre if it is valid', async () => {
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .post('/api/genres')
+                                .set('x-auth-token', token)
+                                .send({ name: 'genre1' });
+                            expect(res.body).toHaveProperty('_id');
+                            expect(res.body).toHaveProperty('name', 'genre1');
+                        });
+                    });"
+
+            Testing the PUT Request:
+                We can test the PUT request using integration testing. We can write a test for PUT request as:
+                    "describe('PUT /:id', () => {
+                        it('should return 401 if client is not logged in', async () => {
+                        });
+                        it('should return 400 if genre is less than 5 characters', async () => {
+                        });
+                        it('should return 400 if genre is more than 50 characters', async () => {
+                        });
+                        it('should return 404 if id is invalid', async () => {
+                        });
+                        it('should return 404 if genre with the given id was not found', async () => {
+                            const id = mongoose.Types.ObjectId();
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .put('/api/genres/' + id)
+                                .set('x-auth-token', token)
+                                .send({ name: 'genre1' });
+                            expect(res.status).toBe(404);
+                        });
+                        it('should update the genre if input is valid', async () => {
+                            const genre = new Genre({ name: 'genre1' });
+                            await genre.save();
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .put('/api/genres/' + genre._id)
+                                .set('x-auth-token', token)
+                                .send({ name: 'updatedGenre' });
+                            const updatedGenre = await Genre.findById(genre._id);
+                            expect(updatedGenre.name).toBe('updatedGenre');
+                        });
+                        it('should return the updated genre if it is valid', async () => {
+                            const genre = new Genre({ name: 'genre1' });
+                            await genre.save();
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .put('/api/genres/' + genre._id)
+                                .set('x-auth-token', token)
+                                .send({ name: 'updatedGenre' });
+                            expect(res.body).toHaveProperty('_id');
+                            expect(res.body).toHaveProperty('name', 'updatedGenre');
+                        });
+                    });"
+
+            Testing the DELETE Request:
+                We can test the DELETE request using integration testing. We can write a test for DELETE request as:
+                    "describe('DELETE /:id', () => {
+                        it('should return 401 if client is not logged in', async () => {
+                        });
+                        it('should return 404 if id is invalid', async () => {
+                        });
+                        it('should return 404 if no genre with the given id was found', async () => {
+                        });
+                        it('should delete the genre if input is valid', async () => {
+                            const genre = new Genre({ name: 'genre1' });
+                            await genre.save();
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .delete('/api/genres/' + genre._id)
+                                .set('x-auth-token', token)
+                                .send();
+                            const genreInDb = await Genre.findById(genre._id);
+                            expect(genreInDb).toBeNull();
+                        });
+                        it('should return the removed genre', async () => {
+                            const genre = new Genre({ name: 'genre1' });
+                            await genre.save();
+                            const token = new User().generateAuthToken();
+                            const res = await request(server)
+                                .delete('/api/genres/' + genre._id)
+                                .set('x-auth-token', token)
+                                .send();
+                            expect(res.body).toHaveProperty('_id', genre._id.toHexString());
+                            expect(res.body).toHaveProperty('name', genre.name);
+                        });
+                    });"
+
+            Testing the Auth Middleware:
+                We can test the auth middleware by using both unit and integration testing. We can write a test 
+                for auth middleware as:
+                1. Integration Testing:
+                    "const { Genre } = require('../../models/genre');
+                    const { User } = require('../../models/user');
+                    let server;
+                    describe('auth middleware', () => {
+                        beforeEach(() => { 
+                            server = require('../../index');
+                            token = new User().generateAuthToken();
+                        });
+                        afterEach(async () => {
+                            await Genre.remove({});
+                            await server.close();
+                        });
+                        let token;
+                        beforeEach(() => { 
+                            token = new User().generateAuthToken();
+                        });
+                        const exec = () => {
+                            return request(server)
+                                .post('/api/genres')
+                                .set('x-auth-token', token)
+                                .send({ name: 'genre1' });
+                        };
+                        it('should return 401 if no token is provided', async () => {
+                            token = '';
+                            const res = await exec();
+                            expect(res.status).toBe(401);
+                        });
+                        it("Should return 400 if token is invalid", async () => {
+                            token = 'a';
+                            const res = await exec();
+                            expect(res.status).toBe(400);
+                        });
+                    });"
+                2. Unit Testing:
+                    Some time we cannot test a function with a single unit or integration test. In that we should 
+                    use both unit and integration testing. Like in this can't test the auth middleware with a
+                    single unit or integration test. So we should use both unit and integration testing.
+
+                    "const auth = require('../../../middleware/auth');
+                    const mongoose = require('mongoose');
+                    
+                    describe('auth middleware', () => {
+                        it('should populate req.user with the payload of a valid JWT', () => {
+                            const user = { 
+                                _id: mongoose.Types.ObjectId().toHexString(), 
+                                isAdmin: true 
+                            };
+                            const token = new User(user).generateAuthToken();
+                            const req = {
+                                header: jest.fn().mockReturnValue(token)
+                            };
+                            const res = {};
+                            const next = jest.fn();
+                            auth(req, res, next);
+                            expect(req.user).toMatchObject(user);
+                        });
+                    });"
+
+            Writing clean Integration tests:
+                We can technique used by mosh to write clean test. Such as above POST path can be refactor as:
+                    "describe('POST /'), ()=>{
+                            //we can define the happy path, and then in each test we change
+                            //one parameter that clearly aligns with the name of the test.
+                        //Mutable test data.
+                        let token;
+                        let name;
+                        //Happy path. This is mostly same in all the test cases.
+                        const exec = async () => {
+                            return await request(server)
+                                .post('/api/genres')
+                                .set('x-auth-token', token)
+                                .send({ name: name });
+                        }
+                        //Before each test we need to initialize the Mutable test data.
+                        beforeEach(() => {
+                            token = new User().generateAuthToken();
+                            name = 'genre1';
+                        });
+                        it('should return 401 if client is not logged in', async () => {
+                            token = ''; //we are changing the token to empty string.
+                            const res = await exec();
+                            expect(res.status).toBe(401);
+                        });
+                        it('should return 400 if genre is less than 5 characters', async () => {
+                            name = '1234';  //we are changing the name to less than 5 characters.
+                            const res = await exec();
+                            expect(res.status).toBe(400);
+                        });
+                        it('should return 400 if genre is more than 50 characters', async () => {
+                            name = new Array(52).join('a'); //we are changing the name to more than 50 characters.
+                            const res = await exec();
+                            expect(res.status).toBe(400);
+                        });
+                        it('should save the genre if it is valid', async () => {
+                            await exec();
+                            const genre = await Genre.find({ name: 'genre1' });
+                            expect(genre).not.toBeNull();
+                        });
+                        it('should return the genre if it is valid', async () => {
+                            const res = await exec();
+                            expect(res.body).toHaveProperty('_id');
+                            expect(res.body).toHaveProperty('name', 'genre1');
+                        });
+                    });"
+
+            Code Coverage:
+                With jest we can know how much of our code is covered by our test. We can use the command:
+                    "npm test -- --coverage"
+                This will give us the coverage of our code. We can also use the command in package.JSON file:
+                    "scripts": {
+                        "test": "set NODE_ENV = test && jest --coverage --watchAll --verbose --detectOpenHandles"
+                    },"
+                This will create a coverage folder in our project. In that we can see the coverage of our code.
+                Remember that we should ignore the coverage folder in .gitignore file.
+                    "coverage/"
+
+
+        Test-driven Development (TDD):
+            TDD is a software development process that relies on the repetition of a very short development cycle, in
+            which tests are written before any production code. This is opposed to software development that allows
+            production code to be written first. Test-driven development is related to but not the same as test-first
+            development, which is a similar technique that may be used for procedural programming. TDD is a design
+            technique aimed at reducing the time required for project development and new code integration while
+            increasing the overall code quality. The cycle is:
+                1. Add a test.
+                2. Run all tests and see if any new test fails.
+                3. Write some simple not over engineered production code to pass the tests.
+                4. Run tests.
+                5. Refactor code if necessary.
+                6. Repeat.
+            Benefits of TDD are:
+                1. Testable source code.
+                2. Fully coverage by tests.
+                3. Clean, simple not over engineered code.
+                4. Better design.
+                5. Better documentation.
+            Test first is better than code first. But some time it is more complex and time consuming to write test
+            first. So we can write test after writing the code and can switch to code first development.
+
+
+            Test Cases:
+                Test cases are the scenarios that we want to test. In TDD we should write test cases first and then
+                write the code to pass the test cases. We can write test cases in the form of user stories. Like:
+                    "User must be logged in to access the route."
+                    "User must provide valid customer id."
+                    "User must provide valid book id."
+                    "If rental already processed, return 400."
+                    "if rental doesn't exist, return 404."
+                    "if request is valid, return 200."
+                    "if request is valid, set the return date."
+                    "if request is valid, calculate the rental fee."
+                    "if request is valid, increase the stock."
+                    "if request is valid, return the rental."
+                    etc.
+
+            Populating the Database:
+                First we should set test file as:
+                    "const {Rental} = require('../../../models/rental');
+                    const mongoose = require('mongoose');
+
+                    jest.setTimeout(30000);
+
+                    describe("/api/returns/" ()=>{
+                        let server;
+                        let customerId;
+                        let bookId;
+                        let rental;
+                        
+                        beforeEach(async () => {
+                            server = require('../../../index');
+                            customerId = mongoose.Types.ObjectId();
+                            bookId = mongoose.Types.ObjectId();
+                            rental = new Rental({
+                                customer: {
+                                    _id: customerId,
+                                    name: '12345',
+                                    phone: '1234567'
+                                },
+                                book: {
+                                    _id: bookId,
+                                    bookName: '12345',
+                                    dailyRentalRate: 2
+                                }
+                            });
+                            await rental.save();
+                        });
+
+                        afterEach(async () => {
+                            await Rental.remove({});
+                            await server.close();
+                        });
+
+                        it('should work', async () => {
+                            const result = await Rental.findById(rental._id)
+                            expect(result).not.toBeNull();
+                        });
+                    });"
+
+            Testing the Authorization:
+                First we must write the test for Authorization. Like:
+                    "it('should return 401 if client is not logged in', async () => {
+                        const res = await request(server)
+                            .post('/api/returns')
+                            .send({ customerId, bookId });
+
+                        expect(res.status).toBe(401);
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "const router = express.Router();
+                    
+                    router.post('/', async (req, res) => {
+                        res.status(401).send('Unauthorized');
+                    });
+                    module.exports = router;"
+
+            Testing the Inputs:
+                First we must write the test for inputs. Like:
+                    "it('should return 400 if customerId is not provided', async () => {
+                        customerId = '';
+                        const res = await exec();
+                        expect(res.status).toBe(400);
+                    });
+                    it('should return 400 if bookId is not provided', async () => {
+                        bookId = '';
+                        const res = await exec();
+                        expect(res.status).toBe(400);
+                    });"
+                Then we should write the simple code to pass the test. Like:                    
+                    "router.post('/', auth, async (req, res) => {
+                        if (!req.body.customerId) return res.status(400).send('customerId not provided.');
+                        if (!req.body.bookId) return res.status(400).send('bookId not provided.');
+                        res.status(401).send('Unauthorized');
+                    });"
+
+            Refactoring Code:
+                Look at above codes where we have some repetition. So using moshian technique to
+                modify the test code:
+                    "const request = require('supertest');
+                    const {Rental} = require('../../../models/rental');
+                    const mongoose = require('mongoose');
+                    const {User} = require('../../../models/user');
+
+                    jest.setTimeout(30000);
+
+                    describe("POST /api/returns/", ()=>{
+                        let server;
+                        let customerId;
+                        let bookId;
+                        let rental;
+                        let token;
+                        let user;
+                        
+                        const exec = () => {
+                            return request(server)
+                                .post('/api/returns')
+                                .set('x-auth-token', token)
+                                .send({ customerId, bookId });
+                        }
+
+                        beforeEach(async () => {
+                            server = require('../../../index');
+                            customerId = mongoose.Types.ObjectId();
+                            bookId = mongoose.Types.ObjectId();
+                            token = new User().generateAuthToken();
+                            rental = new Rental({
+                                customer: {
+                                    _id: customerId,
+                                    name: '12345',
+                                    phone: '1234567'
+                                },
+                                book: {
+                                    _id: bookId,
+                                    bookName: '12345',
+                                    dailyRentalRate: 2
+                                }
+                            });
+                            await rental.save();
+                        });
+
+                        afterEach(async () => {
+                            await Rental.remove({});
+                            await server.close();
+                        });
+
+                        it('Should return 401 if client is not logged in', async () => {
+                            token = '';
+                            const res = await exec();
+                            expect(res.status).toBe(401);
+                        });
+                        it("Should return 400 if customerId is not provided", async () => {
+                            customerId = '';
+                            const res = await exec();
+                            expect(res.status).toBe(400);
+                        });
+                        it("Should return 400 if bookId is not provided", async () => {
+                            bookId = '';
+                            const res = await exec();
+                            expect(res.status).toBe(400);
+                        });
+                    });"
+
+            Looking up an Objects:
+                We can look for an object; like looking for a rental of requested book and customer.
+                    "it('should return 404 if no rental found for this customer/book', async () => {
+                        await Rental.remove({});
+                        const res = await exec();
+                        expect(res.status).toBe(404);
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "router.post('/', auth, async (req, res) => {
+                        const rental = await Rental.findOne({
+                            'customer._id': req.body.customerId,
+                            'book._id': req.body.bookId
+                        });
+                        if (!rental) return res.status(404).send('Rental not found.');
+                    });"
+
+            Testing the Rental Process:
+                First we must write the test for rental process. Like:
+                    "it('should return 400 if rental already processed', async () => {
+                        rental.dateReturned = new Date();
+                        await rental.save();
+                        const res = await exec();
+                        expect(res.status).toBe(400);
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "router.post('/', auth, async (req, res) => {
+                        if (rental.dateReturned) return res.status(400).send('Rental already processed.');
+                    });"
+
+            Testing the valid request:
+                First we must write the test for valid request. Like:
+                    "it('should return 200 if we have a valid request', async () => {
+                        const res = await exec();
+                        expect(res.status).toBe(200);
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "router.post('/', auth, async (req, res) => {
+                        res.status(200).send('OK');
+                    });"
+
+            Testing the returned Date:
+                First we must write the test for returned date. Like:
+                    "it('should set the returnDate if input is valid', async () => {
+                        await exec();
+                        const rentalInDb = await Rental.findById(rental._id);
+                        const diff = new Date() - rentalInDb.dateReturned;
+                        expect(diff).toBeLessThan(10 * 1000);
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "router.post('/', auth, async (req, res) => {
+                        rental.dateReturned = new Date();
+                        await rental.save();
+                        res.status(200).send('OK');
+                    });"
+
+            Testing the Rental Fee:
+                Here we are going to use moment.js to calculate the rental fee. it is a third party
+                library. So we have to install it using npm.
+                    "npm install moment"
+                Moment have a lot of methods, some of them are:
+                    - moment()
+                        it will return the current date and time.
+                    - moment().add(number, 'days')
+                        it will add the number of days to the current date and time.
+                    - moment().parsezone()
+                        it will return the current date and time in the local time zone.
+                    - moment().toDate()
+                        it will convert the moment object to the date object.
+                    - moment().format('YYYY-MM-DD')
+                        it will convert the moment object to the string in the given format.
+                    -moment.duration(number, 'days')
+                        it will return the duration object.
+                    - moment.duration().asDays()
+                        it will return the number of days in the duration object.
+                    - moment.duration().asHours()
+                        it will return the number of hours in the duration object.
+
+                Now First we must write the test for rental fee. Like:
+                    "it('should set the rentalFee if input is valid', async () => {
+                        rental.dateOut = moment().add(-7, 'days').toDate();
+                        await rental.save();
+                        await exec();
+                        const rentalInDb = await Rental.findById(rental._id);
+                        expect(rentalInDb.rentalFee).toBe(14);
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "router.post('/', auth, async (req, res) => {
+                        rental.dateReturned = new Date();
+                        const rentedForDays = moment().diff(rental.dateOut, "days");
+                        rental.rentalFee =  rentedForDays * rental.book.dailyRentalRate ;
+                        await rental.save();
+                        res.status(200).send('OK');
+                    });"
+
+            Testing the book stock:
+                Here we are going to increase the book stock after the book is returned. So we have
+                to write the test for that. Like:
+                    "it('should increase the book stock if input is valid', async () => {
+                        await exec();
+                        const bookInDb = await Book.findById(bookId);
+                        expect(bookInDb.numberInStock).toBe(book.numberInStock + 1);
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "router.post('/', auth, async (req, res) => {
+                        await Book.update({ _id: rental.book._id }, {
+                            $inc: { numberInStock: 1 }
+                        });
+                        
+                        res.status(200).send('OK');
+                    });"
+                But here also remember to import the Book model. Like:
+                    "const { Book } = require('../models/book');"
+                and in beforeEach we have to create a book object. Like:
+                    "let book;
+                        beforeEach(async () => {
+                            book = new Book({ title: '12345', dailyRentalRate: 2, genre: { name: '12345' }, numberInStock: 10 });
+                            await book.save();
+                        });"
+
+            Testing the response:
+                Here we are going to return the rental object in the response. So we have to write
+                the test for that. Like:
+                    "it('should return the rental if input is valid', async () => {
+                        const res = await exec();
+                        expect(Object.keys(res.body)).toEqual(
+                            expect.arrayContaining(['dateOut', 'dateReturned', 'rentalFee', 'customer', 'book'])
+                        );
+                    });"
+                Then we should write the simple code to pass the test. Like:
+                    "router.post('/', auth, async (req, res) => {
+                        res.status(200).send(rental);
+                    });"
+
+
+        Cleaning The source code after all tests are Passing:
+            After we have write all the tests and the source code which is passing all the tests.
+            Now its time to clean and customize source code to make it more readable and understandable.
+            Like we can make a separate middleware for the first two validation lines which
+            are repetitive in many routes and then look if all tests are passing!!
+            Like: 
+                "module.exports = (validator)=>{
+                    return (req, res, next)=>{
+                        const { error } = validator(req.body);
+                        if (error) return res.status(400).send(error.details[0].message);
+                        next();
+                    }
+                }"
+            and then we can use it like:
+                "const validate = require('../middleware/validate');
+                const { Rental, validate } = require('../models/rental');
+                router.post('/', [auth, validate(validateReturn)], async (req, res) => {
+                    //if (!rental) return res.status(404).send('Rental not found.');
+                    //if (rental.dateReturned) return res.status(400).send('Rental already processed.');
+                });"
+            and then we can remove the first two lines from the source code.
+            the validator function is a function which is returning a function. For this route we
+            are using the validateReturn function. So we can pass the validateReturn function as
+            a parameter to the validator function. And then we can use the validate function in
+            the route. Like:
+                "router.post('/', [auth, validate(validateReturn)], async (req, res) => {"
+            THe validateReturn function is a function which is returning a Joi object.
+                "function validateReturn(req) {
+                    const schema = {
+                        customerId: Joi.objectId().required(),
+                        bookId: Joi.objectId().required()
+                    };
+                    return Joi.validate(req, schema);
+                }"
+
+        Mongoose Static and Instance methods:
+            In OOP we have two types of methods.
+                - Static Methods:
+                    Static methods are methods which are directly called on the class.
+                    It have benifits like:
+                        - It can access the properties of the class.
+                    Like:
+                        "class Person {
+                            static walk() {
+                                console.log('walk');
+                            }
+                        }
+                        Person.walk();"
+                - Instance Methods:
+                    Instance methods are methods which are called on the object of the class.
+                    It have benifits like:
+                        - It can access the properties of the object.
+                        - It can access the properties of the class.
+                    Like:
+                        "class Person {
+                            walk() {
+                                console.log('walk');
+                            }
+                        }
+                        const person = new Person();
+                        person.walk();"
+
+            In mongoose we have two types of methods.
+                - Static Methods:
+                    Static methods are methods which are directly called on the class.
+                    It have benifits like:
+                        - It can access the properties of the class.
+                    Like:
+                        "const mongoose = require('mongoose');
+                        const Schema = mongoose.Schema;
+                        const simpleSchema = new Schema({
+                            name: String,
+                            age: Number,
+                            isPublished: Boolean
+                        });
+                        simpleSchema.statics.functionName = function(name) {
+                            return this.find({ name: name });
+                        }
+                        const Simple = mongoose.model('Simple', simpleSchema);
+                        Simple.functionName('name');"
+                    So here we have created a static method which is called functionName.
+                    And we can call this method directly on the class. Like:
+                        "Simple.functionName();"
+                    And we can pass the parameter to this method. Like:
+                        "Simple.functionName('name');"
+                    And we can use the this keyword to access the properties of the class.
+                    
+                - Instance Methods:
+                    Instance methods are methods which are called on the object of the class.
+                    It have benifits like:
+                        - It can access the properties of the object.
+                        - It can access the properties of the class.
+                    Like:
+                        "const mongoose = require('mongoose');
+                        const Schema = mongoose.Schema;
+                        const simpleSchema = new Schema({
+                            name: String,
+                            age: Number,
+                            isPublished: Boolean
+                        });
+                        simpleSchema.methods.functionName = function() {
+                            return this.name;
+                        }
+                        const Simple = mongoose.model('Simple', simpleSchema);
+                        const simple = new Simple({ name: 'name' });
+                        simple.functionName();"
+                    So here we have created a instance method which is called functionName.
+                    And we can call this method on the object of the class. Like:
+                        "simple.functionName();"
+                    And we can use the this keyword to access the properties of the object and class.
+
+        Refactoring the domain logic:
+            Now we are going to refactor the domain logic using instance method
+            Like:
+                "router.post('/', [auth, validate(validateReturn)], async (req, res) => {
+                    const rental = await Rental.lookup(req.body.customerId, req.body.bookId);
+                    if (!rental) return res.status(404).send('Rental not found.');
+                    if (rental.dateReturned) return res.status(400).send('Rental already processed.');
+                    rental.return();
+                    await rental.save();
+                    await Book.update({ _id: rental.book._id }, {
+                        $inc: { numberInStock: 1 }
+                    });
+                    res.status(200).send('OK');
+                });"
+            So here we have to create an instance method in the Rental class. Like:
+                "simpleSchema.methods.return = function() {
+                    this.dateReturned = new Date();
+
+                    const rentalDays = moment().diff(this.dateOut, 'days');
+                    this.rentalFee = rentalDays * this.book.dailyRentalRate;
+                }"
+            And then we have to call this method in the route. Like:
+                "rental.return();"
+            And then we have to remove the dateReturned and rentalFee from the request body.
+

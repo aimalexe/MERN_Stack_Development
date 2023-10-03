@@ -272,8 +272,8 @@ MongoDB:
                             course.author = 'Another Author';
                                 /* We can write the above two lines as:
                                     course.set({
-                                    isPublished: true,
-                                    author: 'Another Author'
+                                        isPublished: true,
+                                        author: 'Another Author'
                                     }); 
                                 */
                             const result = await course.save();
@@ -641,7 +641,75 @@ MongoDB:
                         console.log(result);
                     }"
 
-        
+        Transaction:
+            The group of operations that must either all succeed or all fail is called a transaction.
+            We can use two phase commit to implement transactions in MongoDB.
+            We can use a library called "fawn" to implement transactions in MongoDB, whic uses this two phase commit.
+            We can use "fawn" as:
+                "npm i fawn"
+            After installation we can use it in a file where we want to implement transactions as:
+            Fawn is a class so we need to instantiate it as:
+                "const Fawn = require('fawn');
+                Fawn.init(mongoose);"
+            We can use the following syntax to implement transactions:
+                "try {
+                    new Fawn.Task()
+                        .save('courses', course)
+                        .update('authors', { _id: author._id }, {
+                            $inc: { numberOfCourses: 1 }
+                        })
+                        .run();
+                }
+                catch (ex) {
+                    res.status(500).send('Something failed.');
+                }"
+            Remember that 
+            - we need to use the "async" keyword in the function that we want to implement transactions.
+            - we need to use the "await" keyword in the "Fawn.Task()" function.
+            - save() methods takes two arguments the first argument is the name of the collection (plural and lowercase)
+                and the second argument is the document that we want to save.
+            - update() methods takes three arguments the first argument is the name of the collection (plural and lowercase)
+                the second argument is the query that we want to use to update the document and the third argument is the
+                update that we want to apply to the document.
+            - run() method is used to run the transaction. We must call this method to run the transaction else the transaction
+                will not run.
 
-                
-                        
+        Object Id:
+            Mongoose assign a unique id to each document that we create. This id is called the object id.
+            This object id is a 12 byte value. The first four bytes are the timestamp, the next three bytes are the machine identifier,
+            the next two bytes are the process identifier and the last three bytes are the counter.
+            Mongo ca generate 16 million object ids per second at same time, same machine and same process.
+            We can get each part of the object id as:
+                - timestamp
+                    We can get the timestamp of the object id as:
+                        "const id = new mongoose.Types.ObjectId();
+                        const timestamp = id.getTimestamp();"
+                - machine identifier
+                    We can get the machine identifier of the object id as:
+                        "const id = new mongoose.Types.ObjectId();
+                        const machineIdentifier = id.id.substring(0, 6);"
+                - process identifier
+                    We can get the process identifier of the object id as:
+                        "const id = new mongoose.Types.ObjectId();
+                        const processIdentifier = id.id.substring(6, 10);"
+                - counter
+                    We can get the counter of the object id as:
+                        "const id = new mongoose.Types.ObjectId();
+                        const counter = id.id.substring(10, 12);"
+
+            Validating object ids:
+                We can validate object ids as:
+                    "const isValid = mongoose.Types.ObjectId.isValid('1234');"
+                    //returns false
+                To validate object ids we use npm package called "joi-objectid" as:
+                    "npm i joi-objectid"
+                    We can use the following syntax to validate object ids:
+                        "const Joi = require('joi');
+                        const objectId = require('joi-objectid')(Joi);
+                        const schema = {
+                            customerId: objectId().required()
+                        };"
+                Or simply we can write a valid regular expression to validate object ids as:
+                    "const schema = {
+                        customerId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+                    };"

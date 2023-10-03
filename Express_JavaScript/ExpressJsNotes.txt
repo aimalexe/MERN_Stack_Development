@@ -488,69 +488,486 @@ Backend:
 
             
             Authentication:
-                Authentication is the process of verifying the identity of a user.
+                Authentication is the process of verifying the identity of a user. It is a process of verifying the
+                identity of a user by claiming who they are.
+                We can register a user as: 
+                    "const { error } = validate(req.body);
+                    if (error) return res.status(400).send(error.details[0].message);
+
+                    let user = await User.findOne({ email: req.body.email });
+                    if (user) return res.status(400).send('User already registered.');
+
+                    user = new User({
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: req.body.password
+                    }); 
+                    await user.save(); 
+                    res.send(user); "
+                    "             
+
+                Using Lodash package:
+                    Lodash is a package that provides utility functions for common programming tasks using the functional
+                    programming paradigm. It is a modern JavaScript utility library delivering modularity, performance &
+                    extras. It is based on the popular underscore.js library. It is used to simplify the code.
+                    Its Syntax is:
+                        "npm i lodash"
+                    Then in the file where we want to use it we write the following code:
+                        " const _ = require('lodash'); "
+                    Then we can use the above code as:
+                        "user = new User(_.pick(req.body, ['name', 'email', 'password']));
+                        await user.save();
+                        res.send(_.pick(user, ['_id', 'name', 'email']));"
+
+                    We have other Lodash functions as:
+                        - _.pick() method is used to pick the properties from an object. It takes two arguments which are
+                        the object and the array of properties that we want to pick from the object.
+                        - _.omit() method is used to omit the properties from an object. It takes two arguments which are
+                        the object and the array of properties that we want to omit from the object.
+                        - _.get() method is used to get the value of a property from an object. It takes two arguments
+                        which are the object and the property that we want to get the value of.
+                        - _.set() method is used to set the value of a property from an object. It takes three arguments
+                        which are the object, the property that we want to set the value of and the value that we want to
                 
-            Authorization:
-                Authorization is the process of verifying the permissions of a user. JWT is used for authorization.
-                We will make authorization as bellow in a new file named "tokenVerification" to use it every where.
-                    " const jwt = require('jasonwebtoken');
-                    function verifyToken(req, res, next){
-                        const token = req.header('auth-token');
-                        if(!token) return res.status(400).send("Token not found");
-                        try{
-                            const verify = jwt.verify(token, process.env.TOKEN_SECRET)
-                            next();
-                        }
-                        catch(err)
-                            res.status(400).send("Outdated Token");
-                    }
-                    module.exports = verifyToken; "
-                Now we can use this in any route to which we want to give access as:
-                    "const verifyToken = require('./tokenVerification');
-                    route.get("/profile", verifyToken, (req, res)=> {.....}); "
+                Using joi password complexity:
+                    We can't store the password in the database in plain text. We should store it in the database in the form
+                    of hash. For this we use " bcrypt " package. But first we should make it a strong password. For this we
+                    use " joi-password-complexity " package. It is used to validate the password. It is used to make the
+                    password strong. It is used to make the password more secure.
+                    Its Syntax is:
+                        "npm i joi-password-complexity"
+                    Then in the file where we want to validate the password we write the following code:
+                        " const Joi = require('joi');
+                        const passwordComplexity = require('joi-password-complexity');
 
-                Now we will add a new user in the database. We will use the post method. We will use the async and await
-                keywords. We will use the try and catch block. We will use the Joi package for validation. We will use the
-                bcrypt package for hashing the password, in another file named 'userRoute' as:
-                    " const { User, validate } = require('../models/user');
-                    const bcrypt = require('bcrypt');
-                    router.post('/', async (req, res) => {
-                        const { error } = validate(req.body);
-                        if (error) return res.status(400).send(error.details[0].message);
-                        const{ name, email, password } = req.body;
-                        let user = await User.findOne({ email: req.body.email });
-                        if (user) return res.status(400).send('User already registered.');
-                        const salt = await bcrypt.genSalt(10);
-                        const hash = await bcrypt.hash(password, salt);
-                        user = new User({
-                            name,
-                            email,
-                            password: hash
+                        const schema = Joi.object({
+                            name: Joi.string().min(3).required(),
+                            age: Joi.number().min(18).required(),
+                            password: passwordComplexity().required(),
+                            email: Joi.email().required()
                         });
-                        try{
-                            await user.save();
-                            res.send(user);
-                        }
-                        catch(ex){
-                            for (field in ex.errors)
-                                console.log(ex.errors[field].message);
-                        }
-                    }); "
-            
-            
-                    When user is registered we will login the user:
-                        " route.post("/login" , async (req, res)=> {
-                        const { password, email } = req.body;
-                        const user = await user.findOne({ email: email});
-                        if(!user) return res.status(400).send('Email not found'); //we should send("Email or Password incorrect!") for security
-                        const match = await bcrypt.compare(password, user.password);
-                        if(!match) return res.status(400).send('Password not matched'); //we should send("Email or Password incorrect!") for security
 
-                        //When user is verified we then generate token / barer using jasonwebtoken.
-                        const token = await jwt.sign({email : user.email}, process.env.TOKEN_SECRET); //save TOKEN_SECRET in .env file
-                        res.header("auth-token", token).send()
-                        res.status(400).send("login successfully!")
+                        const result = schema.validate(req.body);
+
+                        if (result.error) {
+                            res.status(400).send(result.error.details[0].message);
+                            return;
+                        } "
+                    We have the following options for the password:
+                        - min: Minimum length of the password.
+                        - max: Maximum length of the password.
+                        - lowerCase: Minimum number of lowercase letters in the password.
+                        - upperCase: Minimum number of uppercase letters in the password.
+                        - numeric: Minimum number of numeric characters in the password.
+                        - symbol: Minimum number of symbols in the password.
+                        - requirementCount: Minimum number of requirements that must be met.
+                        - custom: Custom validation function.
+                        - message: Custom error message.
+                    Can be used as:
+                        " passwordComplexity({
+                            min: 5,
+                            max: 10,
+                            lowerCase: 1,
+                            upperCase: 1,
+                            numeric: 1,
+                            symbol: 1,
+                            requirementCount: 4,
                         }); "
 
+                    For bcrypt read the above section (Password Security).
+                
 
+
+            Authorization:
+                Authorization is the process of verifying the permissions of a user. It is a process of verifying the
+                permissions of a user by claiming what they can do.
+                We can authorize a user by using JSON web token. It is a standard for representing claims securely
+                between two parties. It is a compact and self-contained way of securely transmitting information between
+                parties as a JSON object. It is used to authenticate a user. It is used to authorize a user. It is used to
+                protect the routes of our application. It is used to protect the resources of our application.
+                JsonWebToken has three parts:
+                    - Header: It is a base64url encoded JSON object. It contains the type of the token which is JWT and
+                    the hashing algorithm which is HMAC SHA256 or RSA.
+                    - Payload: It is a base64url encoded JSON object. It contains the claims. It contains the data.
+                    - Signature: It is a base64url encoded string. It is used to verify the token. It is used to verify
+                    that the sender of the JWT is who it says it is and to ensure that the message wasn't changed along
+                    the way.
+
+                    We should't store the token in the database. We should store it in the client side. We should store
+                    it in the local storage of the browser. But if we want to store it in the database then we should
+                    encrypt it. We should store it in the database in the form of hash.
+
+                Its Syntax is:
+                    "npm i jsonwebtoken"
+                We can authorize a user as:
+                In the file where we want to use it we write the following code:
+                    " const jwt = require('jsonwebtoken'); "
+                    "const {error} = validate(req.body);
+                    if (error) return res.status(400).send(error.details[0].message);
+
+                    let user = await User.findOne({ email: req.body.email });
+                    if (!user) return res.status(400).send('Invalid email or password.');
+
+                    const validPassword = await bcrypt.compare(req.body.password, user.password);
+                    if (!validPassword) return res.status(400).send('Invalid email or password.');
+
+                    const token = jwt.sign({ _id: user._id }, config.get('jwtPrivateKey'));
+                    res.send(token);"
+                Instead of sending a response we also include our token in the response header as:
+                    "res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));"
+                
+                Encapsulating Logic in mongoose model:
+                    We see that we are writing the same code again and again. We can encapsulate the logic in mongoose
+                    model (userModel), also import jwt. as:
+                        "userSchema.methods.generateAuthToken = () => {
+                            const token = jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'));
+                            return token;
+                        }"
+                    Then we can use it as:
+                        "const token = user.generateAuthToken();"
+
+                Authorization middleware:
+                    We can use a middleware function to authorize a user. It is a function that has access to the request
+                    object (req), the response object (res), and the next middleware function in the application’s
+                    request-response cycle. The next middleware function is commonly denoted by a variable named next.
+                    We can use it as:
+                        "const jwt = require('jsonwebtoken');
+                        module.exports = function (req, res, next) {
+                            const token = req.header('x-auth-token');
+                            if (!token) return res.status(401).send('Access denied. No token provided.');
+
+                            try {
+                                const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
+                                req.user = decoded;
+                                next();
+                            }
+                            catch (ex) {
+                                res.status(400).send('Invalid token.');
+                            }
+                        }"
+                    Then we can protect our routes and use the above middleware as:
+                        "router.post('/books', auth, async (req, res) => {
+                            const { error } = validate(req.body);
+                            if (error) return res.status(400).send(error.details[0].message);
+
+                            let book = new Book({ name: req.body.name });
+                            book = await book.save();
+
+                            res.send(book);
+                        });"
+                    We should't protect all the routes. We should protect only the routes that we want to protect.
+                    mostly the post, put and delete routes.
+
+                Getting the current user: 
+                    We can get the current user by using the above middleware. We should hide some data (as password, credit
+                    card number, etc) from the user. We can do it by using the select method. We can use it as:
+                        "router.get('/me', auth, async (req, res) => {
+                            const user = await User.findById(req.user._id).select('-password');
+                            res.send(user);
+                        });"
+
+                Loging out a user:
+                    We can log out a user by deleting the token from the client side. We can do it by using the following
+                    code:
+                        "router.post('/logout', auth, async (req, res) => {
+                            const user = await User.findById(req.user._id);
+                            user.token = null;
+                            await user.save();
+                            res.send('Logged out successfully.');
+                        });"
+
+                Role based Authorization:
+                    We can authorize a user by using the role based authorization. We can do it by using the following
+                    code:
+                        "router.delete('/books', [auth, admin], async (req, res) => {
+                            const book = await Book.findByIdAndRemove(req.body.id);
+                            if (!book) return res.status(404).send('The book with the given ID was not found.');
+
+                            res.send(book);
+                        });"
+                    for admin middleware we can use the following code:
+                        "module.exports = function (req, res, next) {
+                            if (!req.user.isAdmin) return res.status(403).send('Access denied.');
+
+                            next();
+                        }"
+            
+            
+            Handling and logging Errors:
+                Our app is error free and working fine. But we can get an error like not connectin to mongo db. We should 
+                send an error message to the client and log the error on the server.
+                
+                Handling Promise Rejection:
+                    When we don't handle promise rejection then we get an "UnhandledPromiseRejectionWarning" error. We can
+                    handle it by using the try catch block in await async and by using the .catch() method in promise.
+                    We can use it as:
+                        "try {
+                            const book = await Book.findByIdAndRemove(req.body.id);
+                            if (!book) return res.status(404).send('The book with the given ID was not found.');
+
+                            res.send(book);
+                        }
+                        catch (ex) {
+                            res.status(500).send('Something failed.');
+                            // 500 - Internal Server Error
+                        }"
+
+                Express Error Middleware:
+                    We can use an error middleware because we don't want to write the same code again and again. We can
+                    use this middleware in the index.js file bellow all the routes. We can use it as:
+                        "app.use(function (err, req, res, next) {
+                            res.status(500).send('Something failed.');
+                        });"
+                    But for a better implementation we use this in another file and import it. We can use it as:
+                        "module.exports = function (err, req, res, next) {
+                            res.status(500).send('Something failed.');
+                        };"
+                    Then we can use it as:
+                        "const error = require('./middleware/error');
+                        // .... bellow all the routes
+                        app.use(error);"
+
+                    Now we can use this in a route as:
+                        "route.get('/', async (req, res, next) => {
+                            try {
+                                const book = await Book.findByIdAndRemove(req.body.id);
+                                if (!book) return res.status(404).send('The book with the given ID was not found.');
+
+                                res.send(book);
+                            }
+                            catch (ex) {
+                                next(ex);
+                            }
+                        }"
+
+                Removing try catch blocks:
+                    See we are writing try catch block again and again. We can remove it by using a function that will
+                    wrap the async function. We can use it as:
+                        "function asyncMiddleware(handler) {
+                            return async (req, res, next) => {
+                                try {
+                                    await handler(req, res);
+                                }
+                                catch (ex) {
+                                    next(ex);
+                                }
+                            };
+                        }"
+                    Then we can use it by wrapping the async function in the asyncMiddleware function and also removing the 
+                    try, catch, next in the async function as:
+                        "router.get('/', asyncMiddleware(async (req, res) => {
+                            const book = await Book.findByIdAndRemove(req.body.id);
+                            if (!book) return res.status(404).send('The book with the given ID was not found.');
+
+                            res.send(book);
+                        }));"
+
+                    We must define the asyncMiddleware function in a separate file and import it in different routes as:
+                        " module.exports = function() ....."
+                    Then we can use it as:
+                        "const asyncMiddleware = require('../middleware/async');"
+
+                Express async errors:
+                    We see that we are writing the same asyncMiddleware function again and again. To get rid of this we can
+                    use an npm package "express-async-errors". We can install it by using the following command:
+                        "npm i express-async-errors"
+                    Then we can use it by using the following code in the index.js file. Remember we should only require It
+                    once, don't need to store it in a variable. We can use it as:
+                        "require('express-async-errors');"
+                    If this is not working use the above asyncMiddleware functions in the routes.
+
+                Logging Errors:
+                    Logging errors mean that we can log the errors on the server side. We can use the "winston" npm package
+                    for logging errors.
+                    Transport:
+                        Transport is a mechanism to send the log to a specific destination. We can use the following
+                        transports:
+                            1. Console
+                            2. File
+                            3. HTTP
+                            4. MongoDB
+                            5. Redis
+                            6. AWS CloudWatch
+                            7. Azure Application Insights
+                            8. Loggly
+                            9. Papertrail
+                            10. Logentries
+                            11. Splunk
+                            12. Logstash
+                            13. New Relic
+                            14. Apache Kafka
+                            15. Syslog
+                            16. Slack
+                            17. Log4js
+                            18. DailyRotateFile
+                            19. Memory
+                            20. Stream
+                            21. Webhook
+                            22. Winston CloudWatch
+                            23. Winston Graylog2
+                            24. Winston Logstash
+                            25. Winston MongoDB
+                            26. Winston Papertrail
+                            27. Winston Slack
+                            28. Winston Syslog
+                            29. Winston Transport
+                    We can install it by using the following command:
+                        "npm i winston"
+                    Then we can use it by using the following code in the index.js file as:
+                        "const winston = require('winston');
+                        winston.add(new winston.transports.File({ filename: 'logfile.log' }));"
+                    Then in the file where we have defined thr errorMiddleware.js we can use it as:
+                        "const winston = require('winston');
+                        winston.error(err.message, err);"
+                    We have some logging levels:
+                        1. error:
+                            use it when we want to log an error.
+                            "winston.error(err.message, err);"
+                        2. warn
+                            use it when we want to log a warning.
+                            "winston.warn(err.message, err);"
+                        3. info
+                            use it when we want to log an information.
+                            "winston.info(err.message, err);"
+                        4. verbose
+                            use it when we want to log a verbose information.
+                            "winston.verbose(err.message, err);"
+                        5. debug
+                            use it when we want to log a debug information.
+                            "winston.debug(err.message, err);"
+                        6. silly
+                            use it when we want to log a silly information.
+                            "winston.silly(err.message, err);"
+
+                    Logging to MongoDB:
+                        We can use the "winston-mongodb" npm package to log the errors to the MongoDB database.
+                        We can install it by using the following command:
+                            "npm i winston-mongodb"
+                        Then we can use it by using the following code in the index.js file as:
+                            "require('winston-mongodb');
+                            winston.add(new winston.transports.MongoDB({ db: 'mongodb://localhost/vidly' }));"
                         
+                    Uncaught Exception:
+                        Some errors are not caught by the express error middleware. For example if we have a syntax error
+                        in the code. We can use the following code to catch these errors as:
+                            "process.on('uncaughtException', (ex) => {
+                                console.log('We got an uncaught exception.');
+                                winston.error(ex.message, ex);
+                                process.exit(1);
+                            });"
+
+                    Unhandled promise rejection:
+                        Some errors are not caught by the express error middleware. For example if we create an unhandled error
+                        as:
+                            "const p = promise.reject(new Error('Something failed miserably!'));
+                            p.then(() => console.log('Done'));"
+                         We can use the following code to catch these errors as:
+                            "process.on('unhandledRejection', (ex) => {
+                                console.log('We got an unhandled rejection.');
+                                winston.error(ex.message, ex);
+                                process.exit(1);
+                            });"
+
+
+            Deployment:
+                Deployment means that we are going to deploy our application to the production server. We can deploy our
+                node application to the following servers:
+                    1. Heroku:
+                        Heroku is a cloud platform as a service supporting several programming languages. We can deploy our
+                        node application to the Heroku server.
+                    2. Azure:
+                        Azure is a cloud computing service created by Microsoft for building, testing, deploying, and managing
+                        applications and services through Microsoft-managed data centers. We can deploy our node application to
+                        the Azure server.
+                    3. AWS:
+                        AWS is a cloud computing platform that offers a wide set of cloud services.
+                    4. Digital Ocean:
+                        Digital Ocean is a cloud platform that offers a wide set of cloud services like compute, storage, networking,
+                        databases, analytics, etc.
+                    5. Google Cloud:
+                        Google Cloud is a cloud computing platform that offers a wide set of cloud services like compute, storage,
+                        networking, databases, analytics, etc.
+                    6. Linode
+                    7. OpenShift
+                    8. Rackspace
+                    9. Render
+                    10. Scalingo
+                    11. Surge
+                    12. Vercel
+                    13. Zeit
+                    14. Cloud Foundry
+                    15. Cloud Run
+                    16. Cloudflare Workers
+                    17. Cloudflare Pages
+                    18. Cloudflare Workers Sites
+                    19. Cloudflare Workers KV
+
+                Preparing the app for deployment:
+                    Before deploying our application to the production server we need to do some changes in our application.
+                    1. Install some packages:
+                        1. Helmet:
+                            Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet,
+                            but it can help!
+                            We can install it by using the following command:
+                                "npm i helmet"
+                            Then we can use it by using the following code in the index.js file as:
+                                "const helmet = require('helmet');
+                                app.use(helmet());"
+                        2. Compression:
+                            Compression middleware for Node.js. Compresses responses for all request that traverse the middleware,
+                            based on the given options.
+                            We can install it by using the following command:
+                                "npm i compression"
+                            Then we can use it by using the following code in the index.js file as:
+                                "const compression = require('compression');
+                                app.use(compression());"
+
+                        Simply:
+                            Make a file "production.js" in startup folder and add the following code in it as:
+                                "const helmet = require('helmet');
+                                const compression = require('compression');
+
+                                module.exports = function(app) {
+                                    app.use(helmet());
+                                    app.use(compression());
+                                }"
+                            Then in the index.js file we can use it as:
+                                "if (app.get('env') === 'production') {
+                                    require('./startup/production')(app);
+                                }"
+
+                    Selecting a platform for deployment,
+                    Heroku:
+                        1. First we need to create an account on the Heroku website.
+                        2. Then we need to install the Heroku CLI from the following link:
+                            https://devcenter.heroku.com/articles/heroku-cli
+                            After this we can check the version of the Heroku CLI by using the following command:
+                                "heroku --version"
+                        3. Then we need to login to the Heroku CLI by using the following command:
+                            "heroku login"
+                            After this enter your email and password.
+                            if this fails then we can create a proxy as:
+                                "set HTTP_PROXY=http://proxy.example.com:8080"
+                        4. In package.json file we need to add the following code in the scripts section as:
+                            "scripts": {
+                                "start": "node index.js",
+                                "heroku-postbuild": "npm install --only=dev && npm run build"
+                            }, 
+                            "engines": {
+                                "node": "12.16.1"
+                            },"
+                            
+                        5. Adding the code to git repository:
+                            1. First we need to initialize the git repository by using the following command:
+                                "git init"
+                            2. Then we need to add the files to the git repository by using the following command:
+                                "git add ."
+                            3. Then we need to commit the files to the git repository by using the following command:
+                                "git commit -m "Initial commit"
+                            4. Remember to add the .gitignore file to the project and add the following code in it as:
+                                "node_modules/
+                                config/keys.js
+                                coverage/"
+
+                    
+                    
